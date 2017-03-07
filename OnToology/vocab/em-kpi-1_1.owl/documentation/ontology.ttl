@@ -51,15 +51,15 @@ ero:Equipment
       rdfs:subClassOf dul:PhysicalObject ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
+                owl:onProperty eko:hasEquipmentParameter ;
+                owl:someValuesFrom bio:EquipmentParameter
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
                 owl:onClass eko:EquipmentType ;
                 owl:onProperty eko:hasEquipmentType ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:hasEquipmentParameter ;
-                owl:someValuesFrom bio:EquipmentParameter
               ] ;
       owl:equivalentClass
               [ a       owl:Class ;
@@ -75,9 +75,6 @@ bio:EquipmentParameter
       rdfs:comment "The parameters of power equipment or building equipment."@en ;
       rdfs:label "EquipmentParameter" ;
       rdfs:subClassOf ssn:Property .
-
-[]    a       owl:AllDisjointClasses ;
-      owl:members (eko:ExtWall eko:ExtWindow eko:Roof ero:Floor ero:Room bio:BuildingStorey bio:Zone) .
 
 om:Compound_unit
       a       owl:Class ;
@@ -223,13 +220,13 @@ ero:EnergyProducerFacility
       rdfs:label "EnergyProducerFacility"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:producesEnergyType ;
-                owl:someValuesFrom ero:EnergyType
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:GeneratingUnit
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:contains ;
-                owl:someValuesFrom eko:GeneratingUnit
+                owl:onProperty ero:producesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
               ] ;
       owl:equivalentClass
               [ a       owl:Class ;
@@ -253,15 +250,15 @@ dct:Location
       rdfs:label "Location"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass geo:Point ;
-                owl:onProperty schema:geo ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty schema:address ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onDataRange xsd:string ;
-                owl:onProperty schema:address ;
+                owl:onClass geo:Point ;
+                owl:onProperty schema:geo ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] .
@@ -330,17 +327,20 @@ time:Interval
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onClass time:Instant ;
-                owl:onProperty time:hasEnd ;
+                owl:onProperty time:hasBeginning ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onClass time:Instant ;
-                owl:onProperty time:hasBeginning ;
+                owl:onProperty time:hasEnd ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:BuildingEquipment eko:District eko:Occupant bio:Building bio:BuildingElement) .
 
 eko:EnergySupplyFromExternalGrid
       a       owl:Class ;
@@ -562,13 +562,13 @@ ero:EnergyConsumerFacility
       rdfs:label "EnergyConsumerFacility"^^xsd:string ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:contains ;
-                owl:someValuesFrom eko:EnergyConsumer
+                owl:onProperty ero:consumesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:consumesEnergyType ;
-                owl:someValuesFrom ero:EnergyType
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:EnergyConsumer
               ] ;
       owl:equivalentClass
               [ a       owl:Class ;
@@ -628,9 +628,6 @@ eko:OperationalKPI
                 owl:onProperty eko:isDisaggregationOf ;
                 owl:someValuesFrom eko:TacticalKPI
               ] .
-
-[]    a       owl:AllDisjointClasses ;
-      owl:members (ero:EnergyParameter po:OccupancyParameter bio:BuildingParameter bio:EnvironmentalParameter bio:EquipmentParameter) .
 
 wo:Humidity
       a       owl:Class ;
@@ -759,9 +756,6 @@ mamo:Mathematical_model
                 owl:someValuesFrom eko:Assumption
               ] .
 
-[]    a       owl:AllDisjointClasses ;
-      owl:members (eko:EnergyForecast eko:EnergyProduction eko:EnergyStorage ero:EnergyCost ero:EnergyDemand ero:EnergySupply ero:EnergyTariff) .
-
 eko:Battery
       a       owl:Class ;
       rdfs:comment "The set of batteries that stores energy."@en ;
@@ -785,13 +779,13 @@ eko:EnergyConsumer
       rdfs:label "EnergyConsumer" ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:consumesEnergyType ;
-                owl:someValuesFrom ero:EnergyType
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom ero:EnergyConsumerFacility
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:contains ;
-                owl:someValuesFrom ero:EnergyConsumerFacility
+                owl:onProperty ero:consumesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
               ] ;
       owl:equivalentClass
               [ a       owl:Class ;
@@ -845,10 +839,8 @@ eko:KPI
       rdfs:label "KeyPerformanceIndicator" ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onDataRange xsd:string ;
-                owl:onProperty dct:identifier ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
+                owl:onProperty eko:hasCalculation ;
+                owl:someValuesFrom eko:KPICalculation
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -859,8 +851,10 @@ eko:KPI
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:hasCalculation ;
-                owl:someValuesFrom eko:KPICalculation
+                owl:onDataRange xsd:string ;
+                owl:onProperty dct:identifier ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
               ] .
 
 eko:hasCalculationComponent
@@ -1100,8 +1094,13 @@ schema:Event
       rdfs:label "Event"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty schema:duration ;
-                owl:someValuesFrom xsd:duration
+                owl:onProperty schema:attendee ;
+                owl:someValuesFrom eko:Occupant
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:OccupantBehavior
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1110,13 +1109,8 @@ schema:Event
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty schema:attendee ;
-                owl:someValuesFrom eko:Occupant
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty po:hasInfluenceOn ;
-                owl:someValuesFrom eko:OccupantBehavior
+                owl:onProperty schema:duration ;
+                owl:someValuesFrom xsd:duration
               ] .
 
 ero:Floor
@@ -1213,6 +1207,9 @@ eko:RenewableGeneratingUnit
       rdfs:label "RenewableGeneratingUnit" ;
       rdfs:subClassOf eko:GeneratingUnit .
 
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:ExtWall eko:ExtWindow eko:Roof ero:Floor ero:Room bio:BuildingStorey bio:Zone) .
+
 eko:isAssociatedKPIOf
       a       owl:ObjectProperty ;
       rdfs:domain eko:KPI ;
@@ -1298,13 +1295,13 @@ eko:OccupantBehavior
       rdfs:label "OccupantBehavior"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:actsTo ;
-                owl:someValuesFrom ero:EnergyConsumerFacility
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom ero:EnergyDemand
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty po:hasInfluenceOn ;
-                owl:someValuesFrom ero:EnergyDemand
+                owl:onProperty eko:actsTo ;
+                owl:someValuesFrom ero:EnergyConsumerFacility
               ] .
 
 eko:providesTo
@@ -1361,15 +1358,15 @@ bio:Building
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
                 owl:onClass bio:Area ;
                 owl:onProperty eko:hasArea ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:isFeatureOfInterestOf ;
-                owl:someValuesFrom ssn:Observation
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1385,11 +1382,6 @@ bio:Building
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:contains ;
-                owl:someValuesFrom ero:BuildingThing
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
                 owl:onDataRange xsd:gYear ;
                 owl:onProperty eko:hasYearOfConstruction ;
                 owl:qualifiedCardinality
@@ -1397,15 +1389,20 @@ bio:Building
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass dct:Location ;
-                owl:onProperty dul:hasLocation ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom ero:BuildingThing
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onClass bio:Volume ;
                 owl:onProperty eko:hasAirConditionedVolume ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] .
@@ -1436,22 +1433,22 @@ eko:EnergyProduction
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:EnergySupplyFromSiteProduction
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
                 owl:someValuesFrom ero:EnergyGain
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onProperty eko:providesTo ;
-                owl:someValuesFrom eko:EnergySupplyFromSiteProduction
+                owl:someValuesFrom eko:EnergyStorage
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onProperty eko:hasForecast ;
                 owl:someValuesFrom eko:EnergyProductionForecast
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:providesTo ;
-                owl:someValuesFrom eko:EnergyStorage
               ] .
 
 eko:Substation
@@ -1468,12 +1465,12 @@ eko:hasPerformanceGoal
       rdfs:range eko:PerformanceGoal ;
       owl:inverseOf eko:isPerformanceGoalOf .
 
+owl:topObjectProperty
+      a       owl:ObjectProperty .
+
 eko:isOccupancyParameterOf
       a       owl:ObjectProperty ;
       rdfs:label "isOccupancyParameterOf"@en .
-
-owl:topObjectProperty
-      a       owl:ObjectProperty .
 
 eko:UniversalConstant
       a       owl:Class ;
@@ -1554,8 +1551,8 @@ bio:Weather
       rdfs:subClassOf bio:EnvironmentalParameter ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty po:hasInfluenceOn ;
-                owl:someValuesFrom eko:IndoorComfort
+                owl:onProperty eko:hasForecast ;
+                owl:someValuesFrom eko:WeatherForecast
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1564,9 +1561,12 @@ bio:Weather
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:hasForecast ;
-                owl:someValuesFrom eko:WeatherForecast
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:IndoorComfort
               ] .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:EnergyForecast eko:EnergyProduction eko:EnergyStorage ero:EnergyCost ero:EnergyDemand ero:EnergySupply ero:EnergyTariff) .
 
 bio:Capacity
       a       owl:Class ;
@@ -1648,8 +1648,23 @@ bio:Zone
       rdfs:subClassOf bio:BuildingElement ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
+                owl:onProperty eko:hasExtWindow ;
+                owl:someValuesFrom eko:ExtWindow
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasExtWall ;
+                owl:someValuesFrom eko:ExtWall
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
                 owl:onProperty eko:hasRoof ;
                 owl:someValuesFrom eko:Roof
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty schema:event ;
+                owl:someValuesFrom schema:Event
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1663,23 +1678,8 @@ bio:Zone
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty schema:event ;
-                owl:someValuesFrom schema:Event
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
                 owl:onProperty eko:hasOccupant ;
                 owl:someValuesFrom eko:Occupant
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:hasExtWall ;
-                owl:someValuesFrom eko:ExtWall
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:hasExtWindow ;
-                owl:someValuesFrom eko:ExtWindow
               ] .
 
 ssn:observedProperty
@@ -1732,8 +1732,10 @@ eko:District
       rdfs:label "District"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty ero:contains ;
-                owl:someValuesFrom eko:PowerSystemResource
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1742,15 +1744,13 @@ eko:District
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass dct:Location ;
-                owl:onProperty dul:hasLocation ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:PowerSystemResource
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:experiences ;
-                owl:someValuesFrom bio:Weather
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1759,8 +1759,8 @@ eko:District
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:isFeatureOfInterestOf ;
-                owl:someValuesFrom ssn:Observation
+                owl:onProperty eko:experiences ;
+                owl:someValuesFrom bio:Weather
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -1838,9 +1838,6 @@ ssn:isPropertyOf
 eko:isDeterminantOf
       a       owl:ObjectProperty ;
       rdfs:label "isDeterminantOf"@en .
-
-[]    a       owl:AllDisjointClasses ;
-      owl:members (eko:EnergySupplyFromExternalGrid eko:EnergySupplyFromSiteProduction eko:EnergySupplyFromStorage) .
 
 eko:isAreaOf
       a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
@@ -2017,10 +2014,8 @@ eko:KPICalculation
       rdfs:label "KPICalculation"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass eko:KPI ;
-                owl:onProperty eko:isCalculationOf ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
+                owl:onProperty eko:hasCalculationComponent ;
+                owl:someValuesFrom eko:KPICalculationComponent
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -2029,8 +2024,8 @@ eko:KPICalculation
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass eko:KPIValue ;
-                owl:onProperty ssn:hasOutput ;
+                owl:onClass eko:KPI ;
+                owl:onProperty eko:isCalculationOf ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] ;
@@ -2050,16 +2045,21 @@ eko:KPICalculation
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass eko:KPIEvaluatedObject ;
-                owl:onProperty eko:hasAssociatedObject ;
+                owl:onClass eko:KPIValue ;
+                owl:onProperty ssn:hasOutput ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:hasCalculationComponent ;
-                owl:someValuesFrom eko:KPICalculationComponent
+                owl:onClass eko:KPIEvaluatedObject ;
+                owl:onProperty eko:hasAssociatedObject ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
               ] .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:EnergySupplyFromExternalGrid eko:EnergySupplyFromSiteProduction eko:EnergySupplyFromStorage) .
 
 ero:EnergyCost
       a       owl:Class ;
@@ -2069,17 +2069,17 @@ ero:EnergyCost
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onProperty eko:hasDeterminant ;
+                owl:someValuesFrom eko:EnergySupplyFromExternalGrid
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDeterminant ;
                 owl:someValuesFrom ero:EnergyGain
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
                 owl:onProperty eko:hasDeterminant ;
                 owl:someValuesFrom ero:EnergyTariff
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:hasDeterminant ;
-                owl:someValuesFrom eko:EnergySupplyFromExternalGrid
               ] .
 
 bio:U-value
@@ -2094,8 +2094,10 @@ eko:PowerSystemResource
       rdfs:label "PowerSystemResource" ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:isAssociatedObjectOf ;
-                owl:someValuesFrom eko:KPICalculation
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
@@ -2104,10 +2106,8 @@ eko:PowerSystemResource
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onClass dct:Location ;
-                owl:onProperty dul:hasLocation ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
               ] ;
       owl:equivalentClass
               [ a       owl:Class ;
@@ -2194,18 +2194,6 @@ An Observation is a Situation in which a Sensing method has been used to estimat
       rdfs:label "Observation"@en ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty eko:providesTo ;
-                owl:someValuesFrom eko:DatumSource
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onClass time:TemporalEntity ;
-                owl:onProperty ssn:observationSamplingTime ;
-                owl:qualifiedCardinality
-                        "1"^^xsd:nonNegativeInteger
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
                 owl:onClass ssn:FeatureOfInterest ;
                 owl:onProperty ssn:featureOfInterest ;
                 owl:qualifiedCardinality
@@ -2220,8 +2208,20 @@ An Observation is a Situation in which a Sensing method has been used to estimat
               ] ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
+                owl:onClass time:TemporalEntity ;
+                owl:onProperty ssn:observationSamplingTime ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
                 owl:onProperty ssn:observationResult ;
                 owl:someValuesFrom ssn:ObservationValue
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:DatumSource
               ] .
 
 eko:EquipmentType
@@ -2275,6 +2275,9 @@ bio:hasSchedule
       rdfs:domain schema:Event ;
       rdfs:label "hasSchedule"@en ;
       rdfs:range bio:Schedule .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (ero:EnergyParameter po:OccupancyParameter bio:BuildingParameter bio:EnvironmentalParameter bio:EquipmentParameter) .
 
 ssn:Property
       a       owl:Class ;
@@ -2409,15 +2412,15 @@ eko:IndoorComfort
       rdfs:subClassOf bio:EnvironmentalParameter ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
-                owl:onProperty po:hasInfluenceOn ;
-                owl:someValuesFrom eko:OccupantBehavior
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
                 owl:onClass bio:Zone ;
                 owl:onProperty ero:hasAssociatedZone ;
                 owl:qualifiedCardinality
                         "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:OccupantBehavior
               ] .
 
 wo:Temperature
@@ -2425,9 +2428,6 @@ wo:Temperature
       rdfs:comment "Outdoor temperature"@en ;
       rdfs:label "Temperature"@en ;
       rdfs:subClassOf wo:WeatherPhenomenon .
-
-[]    a       owl:AllDisjointClasses ;
-      owl:members (eko:BuildingEquipment eko:District eko:Occupant bio:Building bio:BuildingElement) .
 
 eko:PhotovoltaicType
       a       owl:Class ;
@@ -2512,6 +2512,11 @@ eko:Occupant
       rdfs:subClassOf dul:PhysicalObject ;
       rdfs:subClassOf
               [ a       owl:Restriction ;
+                owl:onProperty eko:hasBehavior ;
+                owl:someValuesFrom eko:OccupantBehavior
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
                 owl:onProperty eko:hasOccupancyParameter ;
                 owl:someValuesFrom po:OccupancyParameter
               ] ;
@@ -2519,9 +2524,4 @@ eko:Occupant
               [ a       owl:Restriction ;
                 owl:onProperty eko:isFeatureOfInterestOf ;
                 owl:someValuesFrom ssn:Observation
-              ] ;
-      rdfs:subClassOf
-              [ a       owl:Restriction ;
-                owl:onProperty eko:hasBehavior ;
-                owl:someValuesFrom eko:OccupantBehavior
               ] .
