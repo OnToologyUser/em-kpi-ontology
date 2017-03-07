@@ -1,0 +1,983 @@
+{
+  "@context" : {
+    "containsConstant" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#containsConstant",
+      "@type" : "@id"
+    },
+    "energyDeliveredBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#energyDeliveredBy",
+      "@type" : "@id"
+    },
+    "EnergySupplyFromStorage" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromStorage"
+    },
+    "energyProducedBy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyProducedBy",
+      "@type" : "@id"
+    },
+    "hasCalculation" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasCalculation",
+      "@type" : "@id"
+    },
+    "hasAssociatedZone" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasAssociatedZone",
+      "@type" : "@id"
+    },
+    "hasSpeed" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#hasSpeed",
+      "@type" : "@id"
+    },
+    "EnergyConsumerFacility" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility"
+    },
+    "EnergyProductionForecast" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyProductionForecast"
+    },
+    "Substation" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Substation"
+    },
+    "InputWatts" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#InputWatts"
+    },
+    "energyTypeProducedBy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeProducedBy",
+      "@type" : "@id"
+    },
+    "Battery" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Battery"
+    },
+    "isConstantOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isConstantOf",
+      "@type" : "@id"
+    },
+    "composes" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#composes",
+      "@type" : "@id"
+    },
+    "isEquationOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isEquationOf",
+      "@type" : "@id"
+    },
+    "BuildingParameter" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#BuildingParameter"
+    },
+    "EnergyCost" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCost"
+    },
+    "versionInfo" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionInfo"
+    },
+    "hasDeterminant" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasDeterminant",
+      "@type" : "@id"
+    },
+    "isExtWallOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isExtWallOf",
+      "@type" : "@id"
+    },
+    "producesEnergyType" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType",
+      "@type" : "@id"
+    },
+    "Roof" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Roof"
+    },
+    "Humidity" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity"
+    },
+    "isUnitOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isUnitOf",
+      "@type" : "@id"
+    },
+    "UniversalConstant" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#UniversalConstant"
+    },
+    "isObservationSamplingTimeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isObservationSamplingTimeOf",
+      "@type" : "@id"
+    },
+    "geoPointOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#geoPointOf",
+      "@type" : "@id"
+    },
+    "hasOccupant" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasOccupant",
+      "@type" : "@id"
+    },
+    "VisualComfort" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#VisualComfort"
+    },
+    "isObservedPropertyOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isObservedPropertyOf",
+      "@type" : "@id"
+    },
+    "Shade" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Shade"
+    },
+    "isRoofOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isRoofOf",
+      "@type" : "@id"
+    },
+    "TacticalKPI" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#TacticalKPI"
+    },
+    "Equation" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Equation"
+    },
+    "hasExtWall" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWall",
+      "@type" : "@id"
+    },
+    "isLocationOf" : {
+      "@id" : "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isLocationOf",
+      "@type" : "@id"
+    },
+    "containsEquation" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#containsEquation",
+      "@type" : "@id"
+    },
+    "ElectricVehicle" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#ElectricVehicle"
+    },
+    "hasOccupancyParameter" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasOccupancyParameter",
+      "@type" : "@id"
+    },
+    "isInputOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isInputOf",
+      "@type" : "@id"
+    },
+    "Equipment" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Equipment"
+    },
+    "PowerDeliveryUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PowerDeliveryUnit"
+    },
+    "DHWSystem" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#DHWSystem"
+    },
+    "Volume" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Volume"
+    },
+    "Thing" : {
+      "@id" : "http://www.w3.org/2002/07/owl#Thing"
+    },
+    "topDataProperty" : {
+      "@id" : "http://www.w3.org/2002/07/owl#topDataProperty"
+    },
+    "isPerformanceGoalOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isPerformanceGoalOf",
+      "@type" : "@id"
+    },
+    "isObservationResultOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isObservationResultOf",
+      "@type" : "@id"
+    },
+    "isBuildingTypeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isBuildingTypeOf",
+      "@type" : "@id"
+    },
+    "energyTypeConsumedBy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyTypeConsumedBy",
+      "@type" : "@id"
+    },
+    "Room" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room"
+    },
+    "Dependent_variable" : {
+      "@id" : "http://identifiers.org/mamo/Dependent_variable"
+    },
+    "EnergyCostTariff" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCostTariff"
+    },
+    "GeneratingUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#GeneratingUnit"
+    },
+    "EnergyDemandForecast" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyDemandForecast"
+    },
+    "Singular_unit" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Singular_unit"
+    },
+    "GlobalInclined41SolarIrradiance" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#GlobalInclined41SolarIrradiance"
+    },
+    "BuildingEquipment" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#BuildingEquipment"
+    },
+    "hasOutput" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#hasOutput",
+      "@type" : "@id"
+    },
+    "Unit_multiplication" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Unit_multiplication"
+    },
+    "FeatureOfInterest" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#FeatureOfInterest"
+    },
+    "District" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#District"
+    },
+    "Pipe" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Pipe"
+    },
+    "hasValue" : {
+      "@id" : "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasValue"
+    },
+    "Compound_unit" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Compound_unit"
+    },
+    "isU-valueOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isU-valueOf",
+      "@type" : "@id"
+    },
+    "observationSamplingTime" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#observationSamplingTime",
+      "@type" : "@id"
+    },
+    "PowerSystemResource" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PowerSystemResource"
+    },
+    "PhotovoltaicGeneratingUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PhotovoltaicGeneratingUnit"
+    },
+    "EnvironmentalParameter" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#EnvironmentalParameter"
+    },
+    "Instant" : {
+      "@id" : "http://www.w3.org/2006/time#Instant"
+    },
+    "isVariableOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isVariableOf",
+      "@type" : "@id"
+    },
+    "Duct" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Duct"
+    },
+    "KPI" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#KPI"
+    },
+    "long" : {
+      "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "hasDisaggregation" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasDisaggregation",
+      "@type" : "@id"
+    },
+    "energyConsumedBy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#energyConsumedBy",
+      "@type" : "@id"
+    },
+    "Appliance" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Appliance"
+    },
+    "containsU-value" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#containsU-value",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "contains" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains",
+      "@type" : "@id"
+    },
+    "Wind" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Wind"
+    },
+    "Assumption" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Assumption"
+    },
+    "OccupantBehavior" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#OccupantBehavior"
+    },
+    "inXSDDateTime" : {
+      "@id" : "http://www.w3.org/2006/time#inXSDDateTime",
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "isIn" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isIn",
+      "@type" : "@id"
+    },
+    "Location" : {
+      "@id" : "http://purl.org/dc/terms/Location"
+    },
+    "isFloorOf" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#isFloorOf",
+      "@type" : "@id"
+    },
+    "isMathematicalModelOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isMathematicalModelOf",
+      "@type" : "@id"
+    },
+    "OccupancyParameter" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#OccupancyParameter"
+    },
+    "isScheduleOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isScheduleOf",
+      "@type" : "@id"
+    },
+    "isDeterminantOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isDeterminantOf",
+      "@type" : "@id"
+    },
+    "ObservationValue" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#ObservationValue"
+    },
+    "Occupant" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Occupant"
+    },
+    "isForecastOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isForecastOf",
+      "@type" : "@id"
+    },
+    "isComposedBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isComposedBy",
+      "@type" : "@id"
+    },
+    "DatumSource" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#DatumSource"
+    },
+    "Temperature" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Temperature"
+    },
+    "Event" : {
+      "@id" : "http://schema.org/Event"
+    },
+    "isAssumptionOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAssumptionOf",
+      "@type" : "@id"
+    },
+    "IndoorTemperature" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#IndoorTemperature"
+    },
+    "WeatherForecast" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WeatherForecast"
+    },
+    "isPhotovoltaicTypeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isPhotovoltaicTypeOf",
+      "@type" : "@id"
+    },
+    "isCalculationModelOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isCalculationModelOf",
+      "@type" : "@id"
+    },
+    "hasProperty" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#hasProperty",
+      "@type" : "@id"
+    },
+    "event" : {
+      "@id" : "http://schema.org/event",
+      "@type" : "@id"
+    },
+    "KPICalculation" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculation"
+    },
+    "producesEnergy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergy",
+      "@type" : "@id"
+    },
+    "CO2Concentration" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#CO2Concentration"
+    },
+    "providesTo" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#providesTo",
+      "@type" : "@id"
+    },
+    "isCalculationComponentOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isCalculationComponentOf",
+      "@type" : "@id"
+    },
+    "Interval" : {
+      "@id" : "http://www.w3.org/2006/time#Interval"
+    },
+    "BuildingThing" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing"
+    },
+    "IndoorAirQuality" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#IndoorAirQuality"
+    },
+    "hasArea" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasArea",
+      "@type" : "@id"
+    },
+    "isEquipmentTypeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isEquipmentTypeOf",
+      "@type" : "@id"
+    },
+    "deliversEnergyType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#deliversEnergyType",
+      "@type" : "@id"
+    },
+    "attendee" : {
+      "@id" : "http://schema.org/attendee",
+      "@type" : "@id"
+    },
+    "containsAssumption" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#containsAssumption",
+      "@type" : "@id"
+    },
+    "creator" : {
+      "@id" : "http://purl.org/dc/elements/1.1/creator"
+    },
+    "isAssociatedKPIOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedKPIOf",
+      "@type" : "@id"
+    },
+    "name" : {
+      "@id" : "http://xmlns.com/foaf/0.1/name"
+    },
+    "geo" : {
+      "@id" : "http://schema.org/geo",
+      "@type" : "@id"
+    },
+    "isBeginningOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isBeginningOf",
+      "@type" : "@id"
+    },
+    "hasCalculationModel" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasCalculationModel",
+      "@type" : "@id"
+    },
+    "topObjectProperty" : {
+      "@id" : "http://www.w3.org/2002/07/owl#topObjectProperty",
+      "@type" : "@id"
+    },
+    "OperationalKPI" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#OperationalKPI"
+    },
+    "ExtWall" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#ExtWall"
+    },
+    "Building" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Building"
+    },
+    "ExtWindow" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#ExtWindow"
+    },
+    "FeedInTariff" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#FeedInTariff"
+    },
+    "hasYearOfConstruction" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasYearOfConstruction",
+      "@type" : "http://www.w3.org/2001/XMLSchema#gYear"
+    },
+    "EnergyType" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType"
+    },
+    "hasInput" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#hasInput",
+      "@type" : "@id"
+    },
+    "attendeeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#attendeeOf",
+      "@type" : "@id"
+    },
+    "BuildingElement" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#BuildingElement"
+    },
+    "isOutputOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isOutputOf",
+      "@type" : "@id"
+    },
+    "EnergyConsumer" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyConsumer"
+    },
+    "EnergyProducerFacility" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyProducerFacility"
+    },
+    "isAreaOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAreaOf",
+      "@type" : "@id"
+    },
+    "energyTypeDeliveredBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#energyTypeDeliveredBy",
+      "@type" : "@id"
+    },
+    "WorkstationLighting" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WorkstationLighting"
+    },
+    "KPIEvaluatedObject" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#KPIEvaluatedObject"
+    },
+    "hasInfluenceOn" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn",
+      "@type" : "@id"
+    },
+    "hasEnd" : {
+      "@id" : "http://www.w3.org/2006/time#hasEnd",
+      "@type" : "@id"
+    },
+    "address" : {
+      "@id" : "http://schema.org/address",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "isAssociatedObjectOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedObjectOf",
+      "@type" : "@id"
+    },
+    "Zone" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Zone"
+    },
+    "StoringUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#StoringUnit"
+    },
+    "TemporalEntity" : {
+      "@id" : "http://www.w3.org/2006/time#TemporalEntity"
+    },
+    "hasBeginning" : {
+      "@id" : "http://www.w3.org/2006/time#hasBeginning",
+      "@type" : "@id"
+    },
+    "experiences" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#experiences",
+      "@type" : "@id"
+    },
+    "hasEquipmentParameter" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasEquipmentParameter",
+      "@type" : "@id"
+    },
+    "alt" : {
+      "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#alt",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "consumesEnergy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergy",
+      "@type" : "@id"
+    },
+    "identifier" : {
+      "@id" : "http://purl.org/dc/terms/identifier",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "hasAirConditionedVolume" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasAirConditionedVolume",
+      "@type" : "@id"
+    },
+    "Unit_division" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Unit_division"
+    },
+    "U-value" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#U-value"
+    },
+    "Efficiency" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Efficiency"
+    },
+    "hasEquipmentType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasEquipmentType",
+      "@type" : "@id"
+    },
+    "PhotovoltaicType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PhotovoltaicType"
+    },
+    "deliversEnergy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#deliversEnergy",
+      "@type" : "@id"
+    },
+    "WeatherPhenomenon" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#WeatherPhenomenon"
+    },
+    "Non-renewableGeneratingUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Non-renewableGeneratingUnit"
+    },
+    "Fan" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Fan"
+    },
+    "isAssociatedZoneOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedZoneOf",
+      "@type" : "@id"
+    },
+    "PerformanceGoal" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PerformanceGoal"
+    },
+    "isBehaviorOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isBehaviorOf",
+      "@type" : "@id"
+    },
+    "EnergyProduction" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyProduction"
+    },
+    "EnergySupplyFromSiteProduction" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromSiteProduction"
+    },
+    "isDefinedBy" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy"
+    },
+    "Point" : {
+      "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#Point"
+    },
+    "hasFloor" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#hasFloor",
+      "@type" : "@id"
+    },
+    "isInfluencedBy" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#isInfluencedBy",
+      "@type" : "@id"
+    },
+    "EnergyDemand" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyDemand"
+    },
+    "GlobalHorizontalSolarIrradiance" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#GlobalHorizontalSolarIrradiance"
+    },
+    "EquipmentContainer" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EquipmentContainer"
+    },
+    "Capacity" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Capacity"
+    },
+    "StrategicKPI" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#StrategicKPI"
+    },
+    "isActedBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isActedBy",
+      "@type" : "@id"
+    },
+    "featureOfInterest" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#featureOfInterest",
+      "@type" : "@id"
+    },
+    "hasKPIDefinition" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasKPIDefinition",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Property" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#Property"
+    },
+    "hasDirection" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#hasDirection",
+      "@type" : "@id"
+    },
+    "PowerEquipment" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PowerEquipment"
+    },
+    "hasForecast" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasForecast",
+      "@type" : "@id"
+    },
+    "duration" : {
+      "@id" : "http://schema.org/duration",
+      "@type" : "http://www.w3.org/2001/XMLSchema#duration"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/terms/title",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Mathematical_model" : {
+      "@id" : "http://identifiers.org/mamo/Mathematical_model"
+    },
+    "PVSystem" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#PVSystem"
+    },
+    "EnergySupplyFromExternalGrid" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromExternalGrid"
+    },
+    "hasRoof" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasRoof",
+      "@type" : "@id"
+    },
+    "KPICalculationComponent" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculationComponent"
+    },
+    "EnergyFacility" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyFacility"
+    },
+    "isExtWindowOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isExtWindowOf",
+      "@type" : "@id"
+    },
+    "isEndOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isEndOf",
+      "@type" : "@id"
+    },
+    "lat" : {
+      "@id" : "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "energyTypeStoredBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#energyTypeStoredBy",
+      "@type" : "@id"
+    },
+    "isOccupancyParameterOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isOccupancyParameterOf",
+      "@type" : "@id"
+    },
+    "isSuppliedBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isSuppliedBy",
+      "@type" : "@id"
+    },
+    "consumesEnergyType" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergyType",
+      "@type" : "@id"
+    },
+    "actsTo" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#actsTo",
+      "@type" : "@id"
+    },
+    "modified" : {
+      "@id" : "http://purl.org/dc/terms/modified"
+    },
+    "suppliesTo" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#suppliesTo",
+      "@type" : "@id"
+    },
+    "observedProperty" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#observedProperty",
+      "@type" : "@id"
+    },
+    "isExperiencedBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isExperiencedBy",
+      "@type" : "@id"
+    },
+    "storesEnergyType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#storesEnergyType",
+      "@type" : "@id"
+    },
+    "hasUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasUnit",
+      "@type" : "@id"
+    },
+    "isOccupantOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isOccupantOf",
+      "@type" : "@id"
+    },
+    "WeatherCondition" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#WeatherCondition"
+    },
+    "date" : {
+      "@id" : "http://purl.org/dc/elements/1.1/date"
+    },
+    "Variable" : {
+      "@id" : "http://identifiers.org/mamo/Variable"
+    },
+    "isPropertyOf" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#isPropertyOf",
+      "@type" : "@id"
+    },
+    "seeAlso" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+    },
+    "Pump" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Pump"
+    },
+    "containsVariable" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#containsVariable",
+      "@type" : "@id"
+    },
+    "isEquipmentParameterOf" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#isEquipmentParameterOf",
+      "@type" : "@id"
+    },
+    "isCalculationOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isCalculationOf",
+      "@type" : "@id"
+    },
+    "Weather" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Weather"
+    },
+    "isAirConditionedVolumeOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isAirConditionedVolumeOf",
+      "@type" : "@id"
+    },
+    "observationResult" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#observationResult",
+      "@type" : "@id"
+    },
+    "HVACSystem" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#HVACSystem"
+    },
+    "EnergyParameter" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyParameter"
+    },
+    "BuildingType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#BuildingType"
+    },
+    "KPIValue" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#KPIValue"
+    },
+    "WindDirection" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WindDirection"
+    },
+    "SolarIrradiance" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#SolarIrradiance"
+    },
+    "isDirectionOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isDirectionOf",
+      "@type" : "@id"
+    },
+    "Floor" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Floor"
+    },
+    "isEvaluationTimeStepOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isEvaluationTimeStepOf",
+      "@type" : "@id"
+    },
+    "hasSchedule" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#hasSchedule",
+      "@type" : "@id"
+    },
+    "hasPhotovoltaicType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasPhotovoltaicType",
+      "@type" : "@id"
+    },
+    "EquipmentParameter" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#EquipmentParameter"
+    },
+    "WindPowerSystem" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WindPowerSystem"
+    },
+    "Schedule" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Schedule"
+    },
+    "isDisaggregationOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isDisaggregationOf",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "hasPerformanceGoal" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasPerformanceGoal",
+      "@type" : "@id"
+    },
+    "LightingSystem" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#LightingSystem"
+    },
+    "isProvidedBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isProvidedBy",
+      "@type" : "@id"
+    },
+    "IndoorHumidity" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#IndoorHumidity"
+    },
+    "hasCalculationComponent" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasCalculationComponent",
+      "@type" : "@id"
+    },
+    "Unit_exponentiation" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Unit_exponentiation"
+    },
+    "hasMathML" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasMathML",
+      "@type" : "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "EnergyForecast" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyForecast"
+    },
+    "EnergyTariff" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff"
+    },
+    "hasEvaluationTimeStep" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasEvaluationTimeStep",
+      "@type" : "@id"
+    },
+    "storesEnergy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#storesEnergy",
+      "@type" : "@id"
+    },
+    "ThermalComfort" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#ThermalComfort"
+    },
+    "hasBehavior" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasBehavior",
+      "@type" : "@id"
+    },
+    "Independent_variable" : {
+      "@id" : "http://identifiers.org/mamo/Independent_variable"
+    },
+    "EntityType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EntityType"
+    },
+    "Stakeholder" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#Stakeholder"
+    },
+    "energyStoredBy" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#energyStoredBy",
+      "@type" : "@id"
+    },
+    "EnergyStorage" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EnergyStorage"
+    },
+    "hasAssociatedKPI" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasAssociatedKPI",
+      "@type" : "@id"
+    },
+    "EnergySupply" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergySupply"
+    },
+    "Area" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Area"
+    },
+    "hasLocation" : {
+      "@id" : "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation",
+      "@type" : "@id"
+    },
+    "Unit_of_measure" : {
+      "@id" : "http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"
+    },
+    "OccupantNumber" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#OccupantNumber"
+    },
+    "hasExtWindow" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWindow",
+      "@type" : "@id"
+    },
+    "Power" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Power"
+    },
+    "hasBuildingType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasBuildingType",
+      "@type" : "@id"
+    },
+    "hasMathematicalModel" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasMathematicalModel",
+      "@type" : "@id"
+    },
+    "EnergyGain" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyGain"
+    },
+    "hasAssociatedObject" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#hasAssociatedObject",
+      "@type" : "@id"
+    },
+    "WindGeneratingUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WindGeneratingUnit"
+    },
+    "RenewableGeneratingUnit" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#RenewableGeneratingUnit"
+    },
+    "eventOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#eventOf",
+      "@type" : "@id"
+    },
+    "isSpeedOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isSpeedOf",
+      "@type" : "@id"
+    },
+    "EquipmentType" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#EquipmentType"
+    },
+    "DistributedEnergyResource" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#DistributedEnergyResource"
+    },
+    "PhysicalObject" : {
+      "@id" : "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject"
+    },
+    "IndoorComfort" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#IndoorComfort"
+    },
+    "Observation" : {
+      "@id" : "http://purl.oclc.org/NET/ssnx/ssn#Observation"
+    },
+    "WindSpeed" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#WindSpeed"
+    },
+    "BuildingStorey" : {
+      "@id" : "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#BuildingStorey"
+    },
+    "isFeatureOfInterestOf" : {
+      "@id" : "http://upmestam.linkeddata.es/em-kpi/ontology#isFeatureOfInterestOf",
+      "@type" : "@id"
+    }
+  }
+}

@@ -1,0 +1,2527 @@
+@prefix :        <http://upmestam.linkeddata.es/em-kpi/ontology#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix geo:     <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix ssn:     <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix wo:      <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> .
+@prefix eko:     <http://upmestam.linkeddata.es/em-kpi/ontology#> .
+@prefix schema:  <http://schema.org/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix bio:     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix dul:     <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix om:      <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix po:      <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#> .
+@prefix mamo:    <http://identifiers.org/mamo/> .
+@prefix ero:     <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#> .
+
+eko:GlobalHorizontalSolarIrradiance
+      a       owl:Class ;
+      rdfs:comment "The intensity of global solar radiation in horizontal level"@en ;
+      rdfs:label "GlobalHorizontalSolar"@en ;
+      rdfs:subClassOf wo:SolarIrradiance .
+
+geo:lat
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:domain geo:Point ;
+      rdfs:label "latitude"@en ;
+      rdfs:range xsd:string .
+
+om:Unit_of_measure
+      a       owl:Class ;
+      rdfs:comment "The unit of the observation value or KPI calculation value"@en ;
+      rdfs:label "Unit_of_measure" .
+
+schema:attendee
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Event and the Occupants who attend it"@en ;
+      rdfs:domain schema:Event ;
+      rdfs:label "attendee"@en ;
+      rdfs:range eko:Occupant ;
+      owl:inverseOf eko:attendeeOf .
+
+ero:Equipment
+      a       owl:Class ;
+      rdfs:comment "The equipment in building and district power system."@en ;
+      rdfs:label "Equipment"@en ;
+      rdfs:subClassOf dul:PhysicalObject ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:EquipmentType ;
+                owl:onProperty eko:hasEquipmentType ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasEquipmentParameter ;
+                owl:someValuesFrom bio:EquipmentParameter
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:unionOf (eko:BuildingEquipment eko:PowerEquipment)
+              ] .
+
+eko:eventOf
+      a       owl:ObjectProperty ;
+      rdfs:label "eventOf"@en .
+
+bio:EquipmentParameter
+      a       owl:Class ;
+      rdfs:comment "The parameters of power equipment or building equipment."@en ;
+      rdfs:label "EquipmentParameter" ;
+      rdfs:subClassOf ssn:Property .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:ExtWall eko:ExtWindow eko:Roof ero:Floor ero:Room bio:BuildingStorey bio:Zone) .
+
+om:Compound_unit
+      a       owl:Class ;
+      rdfs:label "Compound_unit" ;
+      rdfs:subClassOf om:Unit_of_measure .
+
+ero:energyProducedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyProducedBy"@en ;
+      owl:inverseOf ero:producesEnergy .
+
+eko:Duct
+      a       owl:Class ;
+      rdfs:comment "The duct in HVAC system"@en ;
+      rdfs:label "Duct"@en ;
+      rdfs:subClassOf eko:BuildingEquipment .
+
+eko:hasMathematicalModel
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a KPI and its mathematical model"@en ;
+      rdfs:label "hasMathematicalModel"@en ;
+      owl:inverseOf eko:isMathematicalModelOf .
+
+eko:StrategicKPI
+      a       owl:Class ;
+      rdfs:comment "The strategic KPI is the KPI at the strategic decision level, the hyper-aggregated KPI corresponding to district scale"@en ;
+      rdfs:label "StrategicKPI"@en ;
+      rdfs:subClassOf eko:KPI ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDisaggregation ;
+                owl:someValuesFrom eko:TacticalKPI
+              ] .
+
+eko:hasBehavior
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Occupant with its behavior (action to building energy systems)"@en ;
+      rdfs:domain eko:Occupant ;
+      rdfs:label "hasBehavior"@en ;
+      rdfs:range eko:OccupantBehavior ;
+      owl:inverseOf eko:isBehaviorOf .
+
+eko:EquipmentContainer
+      a       owl:Class ;
+      rdfs:comment "Equipment container is the district power unit that contains groups of equipment, like substation, plant, Distributed Energy Resources, etc."@en ;
+      rdfs:label "EquipmentContainer" ;
+      rdfs:subClassOf eko:PowerSystemResource .
+
+eko:hasEvaluationTimeStep
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "The evaluation time step of KPI calculation"@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasEvaluationTimeStep"@en ;
+      rdfs:range time:Interval ;
+      owl:inverseOf eko:isEvaluationTimeStepOf .
+
+geo:Point
+      a       owl:Class ;
+      rdfs:comment """Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2)."""@en , "A point, typically described using a coordinate system relative to Earth, such as WGS84, includes the latitude, altitude and longitude of a place."@en ;
+      rdfs:label "GeographicalCoordinatesPoint" ;
+      rdfs:subClassOf
+              [ a       owl:Class ;
+                owl:intersectionOf ([ a       owl:Restriction ;
+                            owl:onDataRange xsd:string ;
+                            owl:onProperty geo:alt ;
+                            owl:qualifiedCardinality
+                                    "1"^^xsd:nonNegativeInteger
+                          ] [ a       owl:Restriction ;
+                            owl:onDataRange xsd:string ;
+                            owl:onProperty geo:lat ;
+                            owl:qualifiedCardinality
+                                    "1"^^xsd:nonNegativeInteger
+                          ] [ a       owl:Restriction ;
+                            owl:onDataRange xsd:string ;
+                            owl:onProperty geo:long ;
+                            owl:qualifiedCardinality
+                                    "1"^^xsd:nonNegativeInteger
+                          ])
+              ] .
+
+eko:isFeatureOfInterestOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isFeatureOfInterestOf"@en .
+
+eko:isExtWindowOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain eko:ExtWindow ;
+      rdfs:label "isExteriorWindowOf"@en .
+
+eko:Non-renewableGeneratingUnit
+      a       owl:Class ;
+      rdfs:comment "The generating unit produces energy with non-renewable resources."@en ;
+      rdfs:label "Non-renewableGeneratingUnit" ;
+      rdfs:subClassOf eko:GeneratingUnit .
+
+eko:ExtWindow
+      a       owl:Class ;
+      rdfs:comment "The exterior window that contributes thermal load to the building and zone"@en ;
+      rdfs:label "ExteriorWindow"@en ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:U-value ;
+                owl:onProperty bio:containsU-value ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:isBehaviorOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isBehaviorOf"@en .
+
+eko:isSuppliedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "isSuppliedBy"@en ;
+      owl:inverseOf eko:suppliesTo .
+
+eko:PowerDeliveryUnit
+      a       owl:Class ;
+      rdfs:comment "Power devices that are capable of delivering electric power to the household"@en ;
+      rdfs:label "PowerDeliveryUnit" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:deliversEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (eko:PowerEquipment [ a       owl:Restriction ;
+                            owl:onProperty eko:deliversEnergy ;
+                            owl:someValuesFrom ero:EnergySupply
+                          ])
+              ] .
+
+ero:EnergyProducerFacility
+      a       owl:Class ;
+      rdfs:comment "The energy facility in the building that produces energy"@en ;
+      rdfs:label "EnergyProducerFacility"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:producesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:GeneratingUnit
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (ero:EnergyFacility [ a       owl:Restriction ;
+                            owl:onProperty ero:producesEnergy ;
+                            owl:someValuesFrom eko:EnergyProduction
+                          ])
+              ] .
+
+eko:hasPhotovoltaicType
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a PV generating unit to its photovoltaic type"@en ;
+      rdfs:domain eko:PhotovoltaicGeneratingUnit ;
+      rdfs:label "hasPhotovoltaicType"@en ;
+      rdfs:range eko:PhotovoltaicType ;
+      owl:inverseOf eko:isPhotovoltaicTypeOf .
+
+dct:Location
+      a       owl:Class ;
+      rdfs:comment "A spatial region or named place. It contains the geographical coordinates point or postal address of an object."@en ;
+      rdfs:label "Location"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass geo:Point ;
+                owl:onProperty schema:geo ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty schema:address ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+bio:containsU-value
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a building envelope (exterior wall, exterior window, roof or floor) and its U-value"@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (eko:ExtWall eko:ExtWindow eko:Roof ero:Floor)
+              ] ;
+      rdfs:label "containsU-value"@en ;
+      rdfs:range bio:U-value .
+
+eko:TacticalKPI
+      a       owl:Class ;
+      rdfs:comment "The tactical KPI is the KPI at tactical decision level, the KPI disaggregated from strategic KPI corresponding to building and system level"@en ;
+      rdfs:label "TacticalKPI"@en ;
+      rdfs:subClassOf eko:KPI ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isDisaggregationOf ;
+                owl:someValuesFrom eko:StrategicKPI
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDisaggregation ;
+                owl:someValuesFrom eko:OperationalKPI
+              ] .
+
+geo:alt
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:domain geo:Point ;
+      rdfs:label "altitude"@en ;
+      rdfs:range xsd:string .
+
+eko:containsConstant
+      a       owl:ObjectProperty ;
+      rdfs:comment "The constant in the mathematical model for KPI calculation"@en ;
+      rdfs:domain mamo:Mathematical_model ;
+      rdfs:label "containsConstant"@en ;
+      rdfs:range eko:UniversalConstant ;
+      owl:inverseOf eko:isConstantOf .
+
+time:TemporalEntity
+      a       owl:Class ;
+      rdfs:comment "A temporal entity is an instant or an interval"@en ;
+      rdfs:label "TemporalEntity"@en .
+
+owl:versionInfo
+      a       owl:AnnotationProperty .
+
+ssn:hasInput
+      a       owl:ObjectProperty ;
+      rdfs:comment "The input of datum source for KPI calculation"@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasInput"@en ;
+      rdfs:range eko:DatumSource ;
+      owl:inverseOf eko:isInputOf .
+
+time:Interval
+      a       owl:Class ;
+      rdfs:comment "The time interval of the observation or evaluation"@en ;
+      rdfs:label "Interval"@en ;
+      rdfs:subClassOf time:TemporalEntity ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass time:Instant ;
+                owl:onProperty time:hasEnd ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass time:Instant ;
+                owl:onProperty time:hasBeginning ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:EnergySupplyFromExternalGrid
+      a       owl:Class ;
+      rdfs:comment "The energy supplied by district energy provider for end uses"@en ;
+      rdfs:label "EnergySupplyFromEnergyProvider"@en ;
+      rdfs:subClassOf ero:EnergySupply .
+
+om:Unit_exponentiation
+      a       owl:Class ;
+      rdfs:label "Unit_exponentiation" ;
+      rdfs:subClassOf om:Compound_unit .
+
+eko:WeatherForecast
+      a       owl:Class ;
+      rdfs:comment "The short-term forecast of the weather"@en ;
+      rdfs:label "WeatherForecast"@en ;
+      rdfs:subClassOf bio:EnvironmentalParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:EnergyForecast
+              ] .
+
+eko:EntityType
+      a       owl:Class ;
+      rdfs:comment "Entity type describes the type of a entity like building, equipment, energy, etc."@en ;
+      rdfs:label "EntityType"@en .
+
+eko:isEquipmentTypeOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isEquipmentTypeOf"@en .
+
+bio:InputWatts
+      a       owl:Class ;
+      rdfs:label "InputtWatts"@en ;
+      rdfs:subClassOf bio:EquipmentParameter .
+
+eko:EnergySupplyFromStorage
+      a       owl:Class ;
+      rdfs:comment "The energy supplied by storage system for end uses"@en ;
+      rdfs:label "EnergySupplyFromStorage"@en ;
+      rdfs:subClassOf ero:EnergySupply .
+
+eko:isInputOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isInputOf"@en .
+
+dc:creator
+      a       owl:AnnotationProperty .
+
+eko:Pump
+      a       owl:Class ;
+      rdfs:comment "The pump in HVAC system, DHW system, etc. "@en ;
+      rdfs:label "Pump"@en ;
+      rdfs:subClassOf eko:BuildingEquipment ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:consumesEnergy ;
+                owl:someValuesFrom ero:EnergyDemand
+              ] .
+
+ero:EnergyGain
+      a       owl:Class ;
+      rdfs:comment "The energy gain is the produced energy that feed into external grid so as to obtain monetary gain"@en ;
+      rdfs:label "EnergyGain"@en ;
+      rdfs:subClassOf ero:EnergyParameter .
+
+eko:DHWSystem
+      a       owl:Class ;
+      rdfs:comment "The domestic hot water system that provides hot water to the building"@en ;
+      rdfs:label "DHWSystem"@en ;
+      rdfs:subClassOf ero:EnergyConsumerFacility .
+
+eko:hasBuildingType
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a Building and its functional type"@en ;
+      rdfs:domain bio:Building ;
+      rdfs:label "hasBuildingType"@en ;
+      rdfs:range eko:BuildingType ;
+      owl:inverseOf eko:isBuildingTypeOf .
+
+eko:Assumption
+      a       owl:Class ;
+      rdfs:comment "The assumption of the methematical model of KPI calculation"@en ;
+      rdfs:label "Assumption"@en ;
+      rdfs:subClassOf eko:KPICalculationComponent .
+
+wo:Wind
+      a       owl:Class ;
+      rdfs:comment "The wind condition like wind speed and wind direction"@en ;
+      rdfs:label "Wind"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:WindSpeed ;
+                owl:onProperty wo:hasSpeed ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:WindDirection ;
+                owl:onProperty wo:hasDirection ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:energyTypeStoredBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyTypeStoredBy"@en ;
+      owl:inverseOf eko:storesEnergyType .
+
+eko:Equation
+      a       owl:Class ;
+      rdfs:comment "The equation of the mathematical model for KPI calculation"@en ;
+      rdfs:label "Equation"@en ;
+      rdfs:subClassOf eko:KPICalculationComponent ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasMathML ;
+                owl:someValuesFrom xsd:string
+              ] .
+
+ssn:hasProperty
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "The chain here ensures that the observed property of an observation is a property of the feature of interest. "@en ;
+      rdfs:label "hasProperty"@en ;
+      owl:inverseOf ssn:isPropertyOf .
+
+ero:contains
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation describing one object is included in another object."@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (dul:PhysicalObject eko:District)
+              ] ;
+      rdfs:label "contains"^^xsd:string ;
+      rdfs:range dul:PhysicalObject ;
+      owl:inverseOf ero:isIn .
+
+<http://upmestam.linkeddata.es/em-kpi/ontology>
+      a       owl:Ontology ;
+      rdfs:comment """The targeted EM-KPI Ontology are aimed to exchange both master data and key performance information in district and building energy management for a multi-level energy performance analysis that addresses stakeholders’ performance goals.
+The targeted EM-KPI ontology is proposed to be represented by two subparts, i.e. EM (Energy Management) master data part and KPI (Key Performance Indicator) part. 
+The purpose of KPI part is to represent the key performance information. It is supposed to describe the definition of each KPI and their relationship, KPI calculation and needed datum source, the related performance goal and evaluated object. This subpart should provide the basis for energy performance tracking and assessment.
+The purpose of the EM master data part is to integrate the master data. It is supposed to describe the master data domains, master data objects and master data elements, and the relationship between each other. This subpart is used to exploit the knowledge in master data sources for identification of energy performance problems and key areas for improvement, so as to make informed decision in energy performance improvement.
+The master data domains in district and building energy management include energy domain (e.g. energy generation, energy distribution, energy consumption), sensor and measurement domain, building domain, facility domain, occupancy, weather, location, etc."""@en ;
+      rdfs:label "EM-KPI Ontology, Energy Management - Key Performance Indicator Ontology"@en ;
+      dc:identifier "http://upmestam.linkeddata.es/em-kpi/ontology" ;
+      dct:modified "30/11/2016"@en ;
+      owl:versionIRI <http://upmestam.linkeddata.es/em-kpi/ontology/1.1> ;
+      owl:versionInfo "EM-KPI Ontology 1.1"@en .
+
+eko:isBuildingTypeOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isBuildingTypeOf"@en .
+
+po:isInfluencedBy
+      a       owl:TransitiveProperty , owl:ObjectProperty ;
+      rdfs:label "isInfluencedBy"@en .
+
+eko:isSpeedOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Inverse property of wo:hasSpeed"@en ;
+      rdfs:label "isSpeedOf"@en ;
+      owl:inverseOf wo:hasSpeed .
+
+eko:WindGeneratingUnit
+      a       owl:Class ;
+      rdfs:comment "The generating unit produces energy with wind energy, wind turbines."@en ;
+      rdfs:label "WindGeneratingUnit" ;
+      rdfs:subClassOf eko:RenewableGeneratingUnit .
+
+eko:suppliesTo
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking Energy Supply to the Energy Demand"@en ;
+      rdfs:domain ero:EnergySupply ;
+      rdfs:label "suppliesTo"@en ;
+      rdfs:range ero:EnergyDemand .
+
+bio:containsEquation
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "The equation of the mathematical model of KPI calculation"@en ;
+      rdfs:domain mamo:Mathematical_model ;
+      rdfs:label "containsEquation"@en ;
+      rdfs:range eko:Equation .
+
+eko:hasKPIDefinition
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "The definition of Key Performance Indicator"@en ;
+      rdfs:domain eko:KPI ;
+      rdfs:label "hasKPIDefinition"@en ;
+      rdfs:range xsd:string .
+
+dul:hasLocation
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an object or event to a geographical Location."@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (schema:Event dul:PhysicalObject eko:District)
+              ] ;
+      rdfs:label "hasLocation"@en ;
+      rdfs:range dct:Location ;
+      owl:inverseOf dul:isLocationOf .
+
+ero:EnergyCostTariff
+      a       owl:Class ;
+      rdfs:comment "The tariff for purchasing energy per unit from main grid (district energy provider)"@en ;
+      rdfs:label "EnergyCostTariff"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyTariff .
+
+eko:isOutputOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isOutputOf"@en .
+
+ero:EnergyConsumerFacility
+      a       owl:Class ;
+      rdfs:comment "The energy facility in the building that consumes energy."@en ;
+      rdfs:label "EnergyConsumerFacility"^^xsd:string ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:EnergyConsumer
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:consumesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (ero:EnergyFacility [ a       owl:Restriction ;
+                            owl:onProperty ero:consumesEnergy ;
+                            owl:someValuesFrom ero:EnergyDemand
+                          ])
+              ] .
+
+eko:attendeeOf
+      a       owl:ObjectProperty ;
+      rdfs:label "attendeeOf"@en .
+
+dct:identifier
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "A functional data property with unique values to make individuals different when their values are different. "@en ;
+      rdfs:label "identifier"@en ;
+      rdfs:range xsd:string .
+
+mamo:Independent_variable
+      a       owl:Class ;
+      rdfs:label "Independent_variable" ;
+      rdfs:subClassOf mamo:Variable .
+
+foaf:name
+      a       owl:AnnotationProperty .
+
+rdfs:comment
+      a       owl:AnnotationProperty .
+
+bio:EnvironmentalParameter
+      a       owl:Class ;
+      rdfs:comment "The parameter describes the environment condition, including indoor environment (indoor comfort) and outdoor environment (weather)"@en ;
+      rdfs:label "EnvironmentalParameter"@en ;
+      rdfs:subClassOf ssn:Property .
+
+ero:Shade
+      a       owl:Class ;
+      rdfs:comment "The shade of building envelope"@en ;
+      rdfs:label "Shade"@en ;
+      rdfs:subClassOf eko:BuildingEquipment .
+
+time:hasBeginning
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Interval to its beginning Instant"@en ;
+      rdfs:domain time:Interval ;
+      rdfs:label "hasBeginning"@en ;
+      rdfs:range time:Instant .
+
+eko:OperationalKPI
+      a       owl:Class ;
+      rdfs:comment "The operational KPI is the KPI at the operational appliance level, the KPI corresponding to zone and equipment level."@en ;
+      rdfs:label "OperationalKPI"@en ;
+      rdfs:subClassOf eko:KPI ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isDisaggregationOf ;
+                owl:someValuesFrom eko:TacticalKPI
+              ] .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (ero:EnergyParameter po:OccupancyParameter bio:BuildingParameter bio:EnvironmentalParameter bio:EquipmentParameter) .
+
+wo:Humidity
+      a       owl:Class ;
+      rdfs:comment "Outdoor humidity"@en ;
+      rdfs:label "Humidity"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon .
+
+ssn:FeatureOfInterest
+      a       owl:Class ;
+      rdfs:comment "A feature is an abstraction of real world phenomena (thing, person, event, etc)" ;
+      rdfs:label "FeatureOfInterest" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ssn:hasProperty ;
+                owl:someValuesFrom ssn:Property
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] .
+
+eko:isObservationResultOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isObservationResultOf"@en .
+
+eko:hasUnit
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "To describe the unit of observation value and KPI value"@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (ssn:ObservationValue eko:KPIValue)
+              ] ;
+      rdfs:label "hasUnit"@en ;
+      rdfs:range om:Unit_of_measure ;
+      owl:inverseOf eko:isUnitOf .
+
+ero:producesEnergyType
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy generation system or equipment to the Energy Type ir produces"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "producesEnergyType"^^xsd:string ;
+      rdfs:range ero:EnergyType .
+
+eko:isAssociatedObjectOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain eko:KPIEvaluatedObject ;
+      rdfs:label "isAssociatedObjectOf"@en ;
+      rdfs:range eko:KPICalculation .
+
+ero:BuildingThing
+      a       owl:Class ;
+      rdfs:comment "All things (here physical objects) that creates a building, it is intended as root of all building components."@en ;
+      rdfs:label "BuildingThing"@en ;
+      rdfs:subClassOf dul:PhysicalObject ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:Building ;
+                owl:onProperty ero:isIn ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+ero:EnergyFacility
+      a       owl:Class ;
+      rdfs:comment "The energy facility in building that consumes or produces energy"@en ;
+      rdfs:label "EnergyFacility"@en ;
+      rdfs:subClassOf ero:BuildingThing ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:BuildingEquipment
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (ero:BuildingThing [ a       owl:Class ;
+                            owl:unionOf ([ a       owl:Restriction ;
+                                        owl:onProperty ero:consumesEnergy ;
+                                        owl:someValuesFrom ero:EnergyDemand
+                                      ] [ a       owl:Restriction ;
+                                        owl:onProperty ero:producesEnergy ;
+                                        owl:someValuesFrom eko:EnergyProduction
+                                      ])
+                          ] [ a       owl:Class ;
+                            owl:complementOf ero:Equipment
+                          ])
+              ] .
+
+mamo:Mathematical_model
+      a       owl:Class ;
+      rdfs:comment "The mathematical model for KPI calculation. The model is composed of a set of variables and a set of equations that establish relationships between the variables. "@en ;
+      rdfs:label "Mathematical_model" ;
+      rdfs:subClassOf eko:KPICalculationComponent ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:Equation ;
+                owl:onProperty bio:containsEquation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:KPI ;
+                owl:onProperty eko:isMathematicalModelOf ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:containsConstant ;
+                owl:someValuesFrom eko:UniversalConstant
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:containsVariable ;
+                owl:someValuesFrom mamo:Variable
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:containsAssumption ;
+                owl:someValuesFrom eko:Assumption
+              ] .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:EnergyForecast eko:EnergyProduction eko:EnergyStorage ero:EnergyCost ero:EnergyDemand ero:EnergySupply ero:EnergyTariff) .
+
+eko:Battery
+      a       owl:Class ;
+      rdfs:comment "The set of batteries that stores energy."@en ;
+      rdfs:label "Battery"@en ;
+      rdfs:subClassOf eko:StoringUnit .
+
+eko:containsAssumption
+      a       owl:ObjectProperty ;
+      rdfs:comment "The assumption of the mathematical model for KPI calculation"@en ;
+      rdfs:domain mamo:Mathematical_model ;
+      rdfs:label "containsAssumption"@en ;
+      rdfs:range eko:Assumption ;
+      owl:inverseOf eko:isAssumptionOf .
+
+dc:identifier
+      a       owl:AnnotationProperty .
+
+eko:EnergyConsumer
+      a       owl:Class ;
+      rdfs:comment "Energy consumer is the power unit that consumes energy in district microgrid."@en ;
+      rdfs:label "EnergyConsumer" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:consumesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom ero:EnergyConsumerFacility
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (eko:PowerEquipment [ a       owl:Restriction ;
+                            owl:onProperty ero:consumesEnergy ;
+                            owl:someValuesFrom ero:EnergyDemand
+                          ])
+              ] .
+
+eko:KPICalculationComponent
+      a       owl:Class ;
+      rdfs:comment "The component needed for KPI calculation, like mathematical model, datum source, etc."@en ;
+      rdfs:label "KPICalculationComponent"@en .
+
+om:Singular_unit
+      a       owl:Class ;
+      rdfs:label "Singular_unit" ;
+      rdfs:subClassOf om:Unit_of_measure .
+
+ssn:hasOutput
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "The output of KPI calculation, the calculation result of KPI"@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasOutput"@en ;
+      rdfs:range eko:KPIValue ;
+      owl:inverseOf eko:isOutputOf .
+
+ero:hasAssociatedZone
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking the Indoor Comfort and its associated Zone"@en ;
+      rdfs:domain eko:IndoorComfort ;
+      rdfs:label "hasAssociatedZone"@en ;
+      rdfs:range bio:Zone .
+
+ero:producesEnergy
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy generating system or equipment with the Energy Production parameter "@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "producesEnergy"^^xsd:string ;
+      rdfs:range eko:EnergyProduction .
+
+eko:EnergyDemandForecast
+      a       owl:Class ;
+      rdfs:label "EnergyDemandForecast"@en ;
+      rdfs:subClassOf eko:EnergyForecast ;
+      owl:disjointWith eko:EnergyProductionForecast .
+
+eko:KPI
+      a       owl:Class ;
+      rdfs:comment "Key Performance Indicator that measures the progress towards stakeholder's key performance goal" ;
+      rdfs:label "KeyPerformanceIndicator" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty dct:identifier ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty eko:hasKPIDefinition ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasCalculation ;
+                owl:someValuesFrom eko:KPICalculation
+              ] .
+
+eko:hasCalculationComponent
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the KPI Calculation and its needed Calculation Components"@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasCalculationComponent"@en ;
+      rdfs:range eko:KPICalculationComponent ;
+      owl:inverseOf eko:isCalculationComponentOf .
+
+eko:isCalculationOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "isCalculationOf"@en ;
+      rdfs:range eko:KPI .
+
+eko:isDisaggregationOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isDisaggregationOf"@en .
+
+eko:HVACSystem
+      a       owl:Class ;
+      rdfs:comment "The Heating, Ventilation and Air Conditioning (HVAC) system that provides building indoor comfort"@en ;
+      rdfs:label "HVACSystem"@en ;
+      rdfs:subClassOf ero:EnergyConsumerFacility .
+
+eko:EnergyProductionForecast
+      a       owl:Class ;
+      rdfs:label "EnergyProductionForecast" ;
+      rdfs:subClassOf eko:EnergyForecast .
+
+eko:hasMathML
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "The MathML of the equation"@en ;
+      rdfs:domain eko:Equation ;
+      rdfs:label "hasMathML"@en ;
+      rdfs:range xsd:string .
+
+schema:event
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its Event"@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "event"@en ;
+      rdfs:range schema:Event ;
+      owl:inverseOf eko:eventOf .
+
+eko:EnergyForecast
+      a       owl:Class ;
+      rdfs:comment "The forecast of energy demand or production"@en ;
+      rdfs:label "EnergyForecast"@en ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom ero:EnergySupply
+              ] .
+
+eko:hasYearOfConstruction
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "Relation linking Building and its constructed year. "@en ;
+      rdfs:domain bio:Building ;
+      rdfs:label "hasYearOfConstruction"@en ;
+      rdfs:range xsd:gYear .
+
+mamo:Variable
+      a       owl:Class ;
+      rdfs:comment "The variable in the mathematical model of KPI calculation"@en ;
+      rdfs:label "Variable"@en ;
+      rdfs:subClassOf eko:KPICalculationComponent .
+
+ero:energyTypeProducedBy
+      a       owl:ObjectProperty ;
+      rdfs:domain ero:EnergyType ;
+      rdfs:label "energyTypeProducedBy"@en ;
+      owl:inverseOf ero:producesEnergyType .
+
+om:Unit_multiplication
+      a       owl:Class ;
+      rdfs:label "Unit_multiplication" ;
+      rdfs:subClassOf om:Compound_unit .
+
+eko:hasOccupant
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its Occupant."@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "hasOccupant"@en ;
+      rdfs:range eko:Occupant ;
+      owl:inverseOf eko:isOccupantOf .
+
+eko:isMathematicalModelOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a KPI with its mathematical model"@en ;
+      rdfs:domain mamo:Mathematical_model ;
+      rdfs:label "isMathematicalModelOf"@en ;
+      rdfs:range eko:KPI .
+
+eko:energyStoredBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyStoredBy"@en ;
+      owl:inverseOf eko:storesEnergy .
+
+rdfs:label
+      a       owl:AnnotationProperty .
+
+eko:isAirConditionedVolumeOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isAirConditionedVolumeOf"@en .
+
+eko:DistributedEnergyResource
+      a       owl:Class ;
+      rdfs:comment "Distributed energy resource is the site energy resource in district like CHP (Combined Heat and Power), photovoltaic generation plant, etc."@en ;
+      rdfs:label "DistributedEnergyResources" ;
+      rdfs:subClassOf eko:EquipmentContainer .
+
+bio:Volume
+      a       owl:Class ;
+      rdfs:comment "Specifies the volume of the air conditioned space in building"@en ;
+      rdfs:label "Volume"@en ;
+      rdfs:subClassOf bio:BuildingParameter .
+
+eko:isRoofOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isRoofOf"@en .
+
+eko:storesEnergyType
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy storage system or equipment to Energy Type it stores"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "storesEnergyType"@en ;
+      rdfs:range ero:EnergyType .
+
+eko:Pipe
+      a       owl:Class ;
+      rdfs:comment "The pipe in HVAC system, DHW system, etc."@en ;
+      rdfs:label "Pipe"@en ;
+      rdfs:subClassOf eko:BuildingEquipment .
+
+eko:isAssociatedZoneOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isAssociatedZoneOf"@en ;
+      owl:inverseOf ero:hasAssociatedZone .
+
+eko:IndoorHumidity
+      a       owl:Class ;
+      rdfs:label "IndoorHumidity"@en ;
+      rdfs:subClassOf eko:ThermalComfort .
+
+eko:experiences
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the District and the Weather it experiences. "@en ;
+      rdfs:domain eko:District ;
+      rdfs:label "experiences"@en ;
+      rdfs:range bio:Weather ;
+      owl:inverseOf eko:isExperiencedBy .
+
+wo:WeatherPhenomenon
+      a       owl:Class ;
+      rdfs:comment "Weather phenomenon describes the ourdoor temperature, humidity, solar radiation and wind."@en ;
+      rdfs:label "WeatherPhenomenon"@en ;
+      rdfs:subClassOf bio:Weather .
+
+eko:isObservationSamplingTimeOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain time:Interval ;
+      rdfs:label "isObservationSamplingTimeOf"@en .
+
+eko:hasAssociatedKPI
+      a       owl:ObjectProperty ;
+      rdfs:comment "The performance goal of stakeholder has associated key performance indicators to measure the progress towards the goal."@en ;
+      rdfs:domain eko:PerformanceGoal ;
+      rdfs:label "hasAssociatedKPI"@en ;
+      rdfs:range eko:KPI ;
+      owl:inverseOf eko:isAssociatedKPIOf .
+
+bio:BuildingStorey
+      a       owl:Class ;
+      rdfs:comment "Building storey captures the storey structure in building"@en ;
+      rdfs:label "BuildingStorey"@en ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom bio:Zone
+              ] .
+
+eko:DatumSource
+      a       owl:Class ;
+      rdfs:comment "Datum source needed for KPI calculation"@en ;
+      rdfs:label "DatumSource"@en ;
+      rdfs:subClassOf eko:KPICalculationComponent ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isProvidedBy ;
+                owl:someValuesFrom ssn:Observation
+              ] .
+
+eko:hasForecast
+      a       owl:ObjectProperty ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (eko:EnergyProduction ero:EnergyDemand bio:Weather)
+              ] ;
+      rdfs:label "Relation linking Weather or Energy to its forecast"@en , "hasForecast"@en ;
+      rdfs:range
+              [ a       owl:Class ;
+                owl:unionOf (eko:EnergyForecast eko:WeatherForecast)
+              ] ;
+      owl:inverseOf eko:isForecastOf .
+
+wo:hasDirection
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a Wind and its direction"@en ;
+      rdfs:domain wo:Wind ;
+      rdfs:label "hasDirection"@en ;
+      rdfs:range eko:WindDirection .
+
+po:OccupancyParameter
+      a       owl:Class ;
+      rdfs:comment "The parameter of occupancy like occupant number or other property"@en ;
+      rdfs:label "OccupancyParameter"@en ;
+      rdfs:subClassOf ssn:Property .
+
+eko:hasExtWall
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its exterior wall"@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "hasExteriorWall"@en ;
+      rdfs:range eko:ExtWall ;
+      owl:inverseOf eko:isExtWallOf .
+
+xsd:gYear
+      a       rdfs:Datatype .
+
+schema:Event
+      a       owl:Class ;
+      rdfs:comment "The event taken place in the zone, such entertainment event, dinner, conference, etc. A non-persistent, time-based occurrence, has location, duration, and responsible actors associated with an event. "@en ;
+      rdfs:label "Event"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty schema:duration ;
+                owl:someValuesFrom xsd:duration
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty bio:hasSchedule ;
+                owl:someValuesFrom bio:Schedule
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty schema:attendee ;
+                owl:someValuesFrom eko:Occupant
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:OccupantBehavior
+              ] .
+
+ero:Floor
+      a       owl:Class ;
+      rdfs:comment "The floor of the zone"@en ;
+      rdfs:label "Floor"^^xsd:string ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:U-value ;
+                owl:onProperty bio:containsU-value ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:geoPointOf
+      a       owl:ObjectProperty ;
+      rdfs:label "geoPointOf"@en .
+
+eko:hasDisaggregation
+      a       owl:ObjectProperty ;
+      rdfs:comment "Strategic KPI can be disaggregated to tactical KPI, and tactical KPI can be disaggregated to operational KPI."@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (eko:StrategicKPI eko:TacticalKPI)
+              ] ;
+      rdfs:label "hasDisaggregation"@en ;
+      rdfs:range
+              [ a       owl:Class ;
+                owl:unionOf (eko:OperationalKPI eko:TacticalKPI)
+              ] ;
+      owl:inverseOf eko:isDisaggregationOf .
+
+eko:GlobalInclined41SolarIrradiance
+      a       owl:Class ;
+      rdfs:comment "The intensity of global solar radiation in angel of 41 degree, the best angel in Madrid"@en ;
+      rdfs:label "GlobalInclined41Solar"@en ;
+      rdfs:subClassOf wo:SolarIrradiance .
+
+eko:KPIEvaluatedObject
+      a       owl:Class ;
+      rdfs:comment "The evaluated object of key performance indicator"@en ;
+      rdfs:label "KPIEvaluatedObject"@en ;
+      owl:equivalentClass
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] .
+
+xsd:duration
+      a       rdfs:Datatype .
+
+eko:ThermalComfort
+      a       owl:Class ;
+      rdfs:comment "Thermal comfort describes the comfort condition related indoor temperature and humidity"@en ;
+      rdfs:label "ThermalComfort"@en ;
+      rdfs:subClassOf eko:IndoorComfort .
+
+eko:storesEnergy
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy storage system or equipemnt to the Energy Storage parameter"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "storesEnergy"@en ;
+      rdfs:range eko:EnergyStorage .
+
+time:inXSDDateTime
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "Relation linking an Instant and a dateTime"@en ;
+      rdfs:domain time:Instant ;
+      rdfs:label "inXSDDateTime"@en ;
+      rdfs:range xsd:dateTime .
+
+schema:duration
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "Relation linking an Event and its duration"@en ;
+      rdfs:domain schema:Event ;
+      rdfs:label "duration"@en ;
+      rdfs:range xsd:duration .
+
+ero:Appliance
+      a       owl:Class ;
+      rdfs:comment "The household appliance that consumes energy, such as fridge, oven, TV, etc."@en ;
+      rdfs:label "Appliance"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyConsumerFacility .
+
+eko:isEndOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isEndOf"@en ;
+      owl:inverseOf time:hasEnd .
+
+eko:RenewableGeneratingUnit
+      a       owl:Class ;
+      rdfs:comment "The generating unit produces energy with renewable resources."@en ;
+      rdfs:label "RenewableGeneratingUnit" ;
+      rdfs:subClassOf eko:GeneratingUnit .
+
+eko:isAssociatedKPIOf
+      a       owl:ObjectProperty ;
+      rdfs:domain eko:KPI ;
+      rdfs:label "isAssociatedKPIOf"@en ;
+      rdfs:range eko:PerformanceGoal .
+
+dul:isLocationOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain dct:Location ;
+      rdfs:label "isLocationOf"@en .
+
+eko:EnergySupplyFromSiteProduction
+      a       owl:Class ;
+      rdfs:comment "The energy supplied directly by site production for end uses"@en ;
+      rdfs:label "EnergySupplyFromSiteProduction"@en ;
+      rdfs:subClassOf ero:EnergySupply .
+
+ero:Room
+      a       owl:Class ;
+      rdfs:comment "The room contained in the zone"@en ;
+      rdfs:label "Room"^^xsd:string ;
+      rdfs:subClassOf bio:BuildingElement .
+
+eko:BuildingType
+      a       owl:Class ;
+      rdfs:comment "Building type describes the functinonal type of a building"@en ;
+      rdfs:label "BuildingType"@en ;
+      rdfs:subClassOf eko:EntityType .
+
+eko:VisualComfort
+      a       owl:Class ;
+      rdfs:comment "The visual comfort describes the comfort related to light condition"@en ;
+      rdfs:label "VisualComfort"@en ;
+      rdfs:subClassOf eko:IndoorComfort .
+
+eko:hasRoof
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its Roof"@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "hasRoof"@en ;
+      rdfs:range eko:Roof ;
+      owl:inverseOf eko:isRoofOf .
+
+eko:CO2Concentration
+      a       owl:Class ;
+      rdfs:label "CO2Concentration"@en ;
+      rdfs:subClassOf bio:IndoorAirQuality .
+
+ssn:observationSamplingTime
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "The time interval of an observation"@en ;
+      rdfs:domain ssn:Observation ;
+      rdfs:label "observationSamplingTime"@en ;
+      rdfs:range time:Interval ;
+      owl:inverseOf eko:isObservationSamplingTimeOf .
+
+eko:KPIValue
+      a       owl:Class ;
+      rdfs:comment "KPI value is the result of KPI calculation"@en ;
+      rdfs:label "KPIValue"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass om:Unit_of_measure ;
+                owl:onProperty eko:hasUnit ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty dul:hasValue ;
+                owl:someValuesFrom xsd:float
+              ] .
+
+wo:WeatherCondition
+      a       owl:Class ;
+      rdfs:comment "The weather condition describes the weather such as rain, sun, snow, etc."@en ;
+      rdfs:label "WeatherCondition"@en ;
+      rdfs:subClassOf bio:Weather .
+
+eko:OccupantBehavior
+      a       owl:Class ;
+      rdfs:comment "The behavior of occupant that influences to energy demand"@en ;
+      rdfs:label "OccupantBehavior"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:actsTo ;
+                owl:someValuesFrom ero:EnergyConsumerFacility
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom ero:EnergyDemand
+              ] .
+
+eko:providesTo
+      a       owl:ObjectProperty ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (ssn:Observation eko:EnergyProduction eko:EnergyStorage)
+              ] ;
+      rdfs:label "providesTo"@en ;
+      rdfs:range
+              [ a       owl:Class ;
+                owl:unionOf (eko:DatumSource eko:EnergyStorage ero:EnergyGain ero:EnergySupply)
+              ] .
+
+eko:IndoorTemperature
+      a       owl:Class ;
+      rdfs:label "IndoorTemperature"@en ;
+      rdfs:subClassOf eko:ThermalComfort .
+
+ssn:ObservationValue
+      a       owl:Class ;
+      rdfs:comment "The observation result of the sensor or meter"@en ;
+      rdfs:label "ObservationValue"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass om:Unit_of_measure ;
+                owl:onProperty eko:hasUnit ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:BuildingEquipment
+      a       owl:Class ;
+      rdfs:comment "The equipment contained in building"@en ;
+      rdfs:label "BuildingEquipment"@en ;
+      rdfs:subClassOf ero:BuildingThing ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] .
+
+bio:Building
+      a       owl:Class ;
+      rdfs:comment "The building in the district."@en ;
+      rdfs:label "Building"@en ;
+      rdfs:subClassOf dul:PhysicalObject ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:BuildingType ;
+                owl:onProperty eko:hasBuildingType ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:Area ;
+                owl:onProperty eko:hasArea ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty dct:title ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom ero:BuildingThing
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:gYear ;
+                owl:onProperty eko:hasYearOfConstruction ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:Volume ;
+                owl:onProperty eko:hasAirConditionedVolume ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:composes
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the Power Equipment and Equipment Container."@en ;
+      rdfs:domain eko:PowerEquipment ;
+      rdfs:label "composes"@en ;
+      rdfs:range eko:EquipmentContainer ;
+      owl:inverseOf eko:isComposedBy .
+
+eko:hasEquipmentType
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Equipment and its type"@en ;
+      rdfs:label "hasEquipmentType"@en ;
+      owl:inverseOf eko:isEquipmentTypeOf .
+
+eko:isForecastOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isForecastOf"@en .
+
+eko:EnergyProduction
+      a       owl:Class ;
+      rdfs:comment "Energy producted by generation system"@en ;
+      rdfs:label "EnergyProduction"@en ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom ero:EnergyGain
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:EnergySupplyFromSiteProduction
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasForecast ;
+                owl:someValuesFrom eko:EnergyProductionForecast
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:EnergyStorage
+              ] .
+
+eko:Substation
+      a       owl:Class ;
+      rdfs:comment "Substation is where transform the high/medio voltage power from main grid to low voltage for the energy use of district consumers."@en ;
+      rdfs:label "Substation"@en ;
+      rdfs:subClassOf eko:EquipmentContainer .
+
+eko:hasPerformanceGoal
+      a       owl:ObjectProperty ;
+      rdfs:comment "The performance goals of stakeholders."@en ;
+      rdfs:domain eko:Stakeholder ;
+      rdfs:label "hasPerformanceGoal"@en ;
+      rdfs:range eko:PerformanceGoal ;
+      owl:inverseOf eko:isPerformanceGoalOf .
+
+eko:isOccupancyParameterOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isOccupancyParameterOf"@en .
+
+owl:topObjectProperty
+      a       owl:ObjectProperty .
+
+eko:UniversalConstant
+      a       owl:Class ;
+      rdfs:comment "The universal constant in the mathematical model of KPI calculation"@en ;
+      rdfs:label "UniversalConstant"@en ;
+      rdfs:subClassOf eko:KPICalculationComponent .
+
+eko:energyDeliveredBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyDeliveredBy"@en .
+
+ssn:observationResult
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain ssn:Observation ;
+      rdfs:label "The result of an observation"@en , "observationResult"@en ;
+      rdfs:range ssn:ObservationValue ;
+      owl:inverseOf eko:isObservationResultOf .
+
+eko:isScheduleOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain bio:Schedule ;
+      rdfs:label "isScheduleOf"@en ;
+      owl:inverseOf bio:hasSchedule .
+
+eko:isCalculationComponentOf
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the KPI needed Calculation Components and its Calculation"@en ;
+      rdfs:label "isCalculationComponentOf"@en .
+
+bio:LightingSystem
+      a       owl:Class ;
+      rdfs:comment "The lighting system in the building"@en ;
+      rdfs:label "LightingSystem"@en ;
+      rdfs:subClassOf ero:EnergyConsumerFacility .
+
+schema:address
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "To describe the address of a Location"@en ;
+      rdfs:domain dct:Location ;
+      rdfs:label "address"@en ;
+      rdfs:range xsd:string .
+
+eko:GeneratingUnit
+      a       owl:Class ;
+      rdfs:comment "Generating unit is the power unit that generates energy for district end users, like photovoltaic array."@en ;
+      rdfs:label "GeneratingUnit" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:producesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (eko:PowerEquipment [ a       owl:Restriction ;
+                            owl:onProperty ero:producesEnergy ;
+                            owl:someValuesFrom eko:EnergyProduction
+                          ])
+              ] .
+
+geo:long
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:domain geo:Point ;
+      rdfs:label "longitude"@en ;
+      rdfs:range xsd:string .
+
+schema:geo
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a Location to geographical coordinates point. "@en ;
+      rdfs:domain dct:Location ;
+      rdfs:label "geo"@en ;
+      rdfs:range geo:Point ;
+      owl:inverseOf eko:geoPointOf .
+
+bio:Weather
+      a       owl:Class ;
+      rdfs:comment "Weather describes the outdoor environment"@en ;
+      rdfs:label "Weather"@en ;
+      rdfs:subClassOf bio:EnvironmentalParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:IndoorComfort
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:EnergyProduction
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasForecast ;
+                owl:someValuesFrom eko:WeatherForecast
+              ] .
+
+bio:Capacity
+      a       owl:Class ;
+      rdfs:label "Capacity"@en ;
+      rdfs:subClassOf bio:EquipmentParameter .
+
+ero:isIn
+      a       owl:ObjectProperty ;
+      rdfs:label "isIn"^^xsd:string .
+
+eko:hasArea
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking Building and its constructed Area."@en ;
+      rdfs:domain bio:Building ;
+      rdfs:label "hasArea"@en ;
+      rdfs:range bio:Area ;
+      owl:inverseOf eko:isAreaOf .
+
+eko:hasAirConditionedVolume
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a Building and its air conditioned Volume."@en ;
+      rdfs:domain bio:Building ;
+      rdfs:label "hasAirConditionedVolume"@en ;
+      rdfs:range bio:Volume ;
+      owl:inverseOf eko:isAirConditionedVolumeOf .
+
+rdfs:seeAlso
+      a       owl:AnnotationProperty .
+
+eko:isDirectionOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Inverse property of wo:hasDirection"@en ;
+      rdfs:label "isDirectionOf"@en ;
+      owl:inverseOf wo:hasDirection .
+
+eko:isEquationOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain eko:Equation ;
+      rdfs:label "isEquationOf"@en ;
+      rdfs:range mamo:Mathematical_model ;
+      owl:inverseOf bio:containsEquation .
+
+bio:IndoorAirQuality
+      a       owl:Class ;
+      rdfs:comment "Indoor air quality describes the quality (or contamination level) of indoor air"@en ;
+      rdfs:label "IndoorAirQuality"@en ;
+      rdfs:subClassOf eko:IndoorComfort .
+
+eko:isConstantOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isConstantOf"@en .
+
+bio:Schedule
+      a       owl:Class ;
+      rdfs:comment "The day schedule of the event taken place in the zone"@en ;
+      rdfs:label "Schedule"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isScheduleOf ;
+                owl:someValuesFrom schema:Event
+              ] .
+
+bio:BuildingParameter
+      a       owl:Class ;
+      rdfs:comment "The building static parameter that to be measured, like area, volume, material property"@en ;
+      rdfs:label "BuildingParameter"@en ;
+      rdfs:subClassOf ssn:Property .
+
+eko:PVSystem
+      a       owl:Class ;
+      rdfs:comment "System that generates electricity through solar photovoltaic panel"@en ;
+      rdfs:label "PVSystem"@en ;
+      rdfs:subClassOf ero:EnergyProducerFacility .
+
+bio:Zone
+      a       owl:Class ;
+      rdfs:comment "The thermal zone in the building"@en ;
+      rdfs:label "Zone"@en ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasRoof ;
+                owl:someValuesFrom eko:Roof
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom ero:Room
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:hasFloor ;
+                owl:someValuesFrom ero:Floor
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty schema:event ;
+                owl:someValuesFrom schema:Event
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasOccupant ;
+                owl:someValuesFrom eko:Occupant
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasExtWall ;
+                owl:someValuesFrom eko:ExtWall
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasExtWindow ;
+                owl:someValuesFrom eko:ExtWindow
+              ] .
+
+ssn:observedProperty
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Observation to the Property that was observed. The observedProperty should be a Property (hasProperty) of the FeatureOfInterest (linked by featureOfInterest) of this observation." ;
+      rdfs:domain ssn:Observation ;
+      rdfs:label "observedProperty"@en ;
+      rdfs:range ssn:Property ;
+      owl:inverseOf eko:isObservedPropertyOf .
+
+eko:Stakeholder
+      a       owl:Class ;
+      rdfs:comment "The stakeholder in district or building that has performance goals to be achieved"@en ;
+      rdfs:label "Stakeholder"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasPerformanceGoal ;
+                owl:someValuesFrom eko:PerformanceGoal
+              ] .
+
+eko:deliversEnergyType
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking the power delivery system or equipment to the Energy Type it delivers"@en ;
+      rdfs:domain eko:PowerDeliveryUnit ;
+      rdfs:label "deliversEnergyType"@en ;
+      rdfs:range ero:EnergyType ;
+      owl:inverseOf eko:energyTypeDeliveredBy .
+
+ssn:featureOfInterest
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Observation to its Feature Of Interest."@en ;
+      rdfs:domain ssn:Observation ;
+      rdfs:label "featureOfInterest"@en ;
+      rdfs:range ssn:FeatureOfInterest ;
+      owl:inverseOf eko:isFeatureOfInterestOf .
+
+ero:energyTypeConsumedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyTypeConsumedBy"@en .
+
+dct:title
+      a       owl:FunctionalProperty , owl:DatatypeProperty ;
+      rdfs:comment "To describe the name of an object"@en ;
+      rdfs:label "title"@en ;
+      rdfs:range xsd:string .
+
+eko:District
+      a       owl:Class ;
+      rdfs:comment "District is the platform where contains multi buildings and other physical objects."@en ;
+      rdfs:label "District"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom eko:PowerSystemResource
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:contains ;
+                owl:someValuesFrom bio:Building
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:experiences ;
+                owl:someValuesFrom bio:Weather
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty dct:title ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:Fan
+      a       owl:Class ;
+      rdfs:comment "The fan in HVAC system"@en ;
+      rdfs:label "Fan"@en ;
+      rdfs:subClassOf eko:BuildingEquipment ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ero:consumesEnergy ;
+                owl:someValuesFrom ero:EnergyDemand
+              ] .
+
+eko:deliversEnergy
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the power delivery system or equipment to the Energy Supply parameter"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "deliversEnergy"@en ;
+      rdfs:range ero:EnergySupply ;
+      owl:inverseOf eko:energyDeliveredBy .
+
+mamo:Dependent_variable
+      a       owl:Class ;
+      rdfs:label "Dependent_variable" ;
+      rdfs:subClassOf mamo:Variable ;
+      owl:disjointWith mamo:Independent_variable .
+
+time:hasEnd
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Interval to its end Instant"@en ;
+      rdfs:domain time:Interval ;
+      rdfs:label "hasEnd"@en ;
+      rdfs:range time:Instant .
+
+eko:Roof
+      a       owl:Class ;
+      rdfs:comment "The roof of the zone"@en ;
+      rdfs:label "Roof"@en ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:U-value ;
+                owl:onProperty bio:containsU-value ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+dul:hasValue
+      a       owl:DatatypeProperty ;
+      rdfs:comment "Relation to describe an value of an observation or KPI"@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (ssn:ObservationValue eko:KPIValue)
+              ] ;
+      rdfs:label "hasValue"@en ;
+      rdfs:range
+              [ a       rdfs:Datatype ;
+                owl:unionOf (xsd:float xsd:integer xsd:string)
+              ] .
+
+ssn:isPropertyOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation between a FeatureOfInterest and a Property (a Quality observable by a sensor) of that feature." ;
+      rdfs:domain ssn:Property ;
+      rdfs:label "isPropertyOf"@en ;
+      rdfs:range ssn:FeatureOfInterest .
+
+eko:isDeterminantOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isDeterminantOf"@en .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:EnergySupplyFromExternalGrid eko:EnergySupplyFromSiteProduction eko:EnergySupplyFromStorage) .
+
+eko:isAreaOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isAreaOf"@en .
+
+ero:energyConsumedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "energyConsumedBy"@en .
+
+eko:isProvidedBy
+      a       owl:ObjectProperty ;
+      rdfs:comment """The datum source for KPI calculation is provided by observation.
+The energy storage is provided by energy production.
+The energy supply is provided by energy production or energy storage."""@en ;
+      rdfs:domain
+              [ a       owl:Class ;
+                owl:unionOf (eko:DatumSource eko:EnergyStorage ero:EnergyGain ero:EnergySupply)
+              ] ;
+      rdfs:label "isProvidedBy"@en ;
+      rdfs:range
+              [ a       owl:Class ;
+                owl:unionOf (ssn:Observation eko:EnergyProduction eko:EnergyStorage)
+              ] ;
+      owl:inverseOf eko:providesTo .
+
+ero:consumesEnergy
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy consumption system or equipment to the Energy Demand parameter"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "consumesEnergy"^^xsd:string ;
+      rdfs:range ero:EnergyDemand ;
+      owl:inverseOf ero:energyConsumedBy .
+
+bio:Area
+      a       owl:Class ;
+      rdfs:comment "Specifies the area of the building."@en ;
+      rdfs:label "Area"@en ;
+      rdfs:subClassOf bio:BuildingParameter .
+
+ero:EnergyParameter
+      a       owl:Class ;
+      rdfs:comment "Energy parameter describes energy behavior in district and buildings, inluding energy production, energy storage, energy supply, energy demand, energy cost and tariff, etc."@en ;
+      rdfs:label "EnergyParameter"@en ;
+      rdfs:subClassOf ssn:Property .
+
+eko:isExtWallOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isExteriorWallOf"@en .
+
+eko:isActedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "isActedBy"@en .
+
+eko:PhotovoltaicGeneratingUnit
+      a       owl:Class ;
+      rdfs:comment "The generating unit produces energy with solar energy, photovoltaic panels."@en ;
+      rdfs:label "PhotovoltaicGeneratingUnit" ;
+      rdfs:subClassOf eko:RenewableGeneratingUnit ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:PhotovoltaicType ;
+                owl:onProperty eko:hasPhotovoltaicType ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:isPhotovoltaicTypeOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isPhotovoltaicTypeOf"@en .
+
+eko:WindPowerSystem
+      a       owl:Class ;
+      rdfs:comment "System that generates electricity through wind power"@en ;
+      rdfs:label "WindPowerSystem"@en ;
+      rdfs:subClassOf ero:EnergyProducerFacility .
+
+eko:OccupantNumber
+      a       owl:Class ;
+      rdfs:comment "The number of occupants in the zone or building"@en ;
+      rdfs:label "OccupantNumber"@en ;
+      rdfs:subClassOf po:OccupancyParameter .
+
+dc:date
+      a       owl:AnnotationProperty .
+
+eko:hasCalculationModel
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "To represent the mathematical model for KPI calculation"@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasCalculationModel"@en ;
+      rdfs:range mamo:Mathematical_model ;
+      owl:inverseOf eko:isCalculationModelOf .
+
+rdfs:isDefinedBy
+      a       owl:AnnotationProperty .
+
+ero:hasFloor
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its Floor"@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "hasFloor"@en ;
+      rdfs:range ero:Floor ;
+      owl:inverseOf ero:isFloorOf .
+
+ero:EnergyTariff
+      a       owl:Class ;
+      rdfs:comment "Tariff that is charged per energy unit by district energy providers"@en ;
+      rdfs:label "EnergyTariff"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyParameter .
+
+eko:isCalculationModelOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isCalculationModelOf"@en .
+
+eko:isComposedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "isComposedBy"@en .
+
+eko:isAssumptionOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isAssumptionOf"@en .
+
+eko:ExtWall
+      a       owl:Class ;
+      rdfs:comment "The exterior wall that contributes thermal load to the building and zone"@en ;
+      rdfs:label "ExteriorWall"@en ;
+      rdfs:subClassOf bio:BuildingElement ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:U-value ;
+                owl:onProperty bio:containsU-value ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:isOccupantOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain eko:Occupant ;
+      rdfs:label "isOccupantOf"@en .
+
+ero:isFloorOf
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isFloorOf"@en .
+
+eko:containsVariable
+      a       owl:ObjectProperty ;
+      rdfs:comment "The variable of the mathematical model for KPI calculation"@en ;
+      rdfs:domain mamo:Mathematical_model ;
+      rdfs:label "containsVariable"@en ;
+      rdfs:range mamo:Variable ;
+      owl:inverseOf eko:isVariableOf .
+
+time:Instant
+      a       owl:Class ;
+      rdfs:comment "An instant is a time instant"@en ;
+      rdfs:label "Instant"@en ;
+      rdfs:subClassOf time:TemporalEntity ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:dateTime ;
+                owl:onProperty time:inXSDDateTime ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:isBeginningOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isBeginningOf"@en ;
+      owl:inverseOf time:hasBeginning .
+
+eko:KPICalculation
+      a       owl:Class ;
+      rdfs:comment "The KPI calculation to calculate specific KPI with mathematical model and datum source"@en ;
+      rdfs:label "KPICalculation"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:KPI ;
+                owl:onProperty eko:isCalculationOf ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ssn:hasInput ;
+                owl:someValuesFrom eko:DatumSource
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:KPIValue ;
+                owl:onProperty ssn:hasOutput ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass time:Interval ;
+                owl:onProperty eko:hasEvaluationTimeStep ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass mamo:Mathematical_model ;
+                owl:onProperty eko:hasCalculationModel ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass eko:KPIEvaluatedObject ;
+                owl:onProperty eko:hasAssociatedObject ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasCalculationComponent ;
+                owl:someValuesFrom eko:KPICalculationComponent
+              ] .
+
+ero:EnergyCost
+      a       owl:Class ;
+      rdfs:comment "The cost for purchasing energy from external grid"@en ;
+      rdfs:label "EnergyCost"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDeterminant ;
+                owl:someValuesFrom ero:EnergyGain
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDeterminant ;
+                owl:someValuesFrom ero:EnergyTariff
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasDeterminant ;
+                owl:someValuesFrom eko:EnergySupplyFromExternalGrid
+              ] .
+
+bio:U-value
+      a       owl:Class ;
+      rdfs:comment "Overall thermal conductance of the envelope"@en ;
+      rdfs:label "U-value"@en ;
+      rdfs:subClassOf bio:BuildingParameter .
+
+eko:PowerSystemResource
+      a       owl:Class ;
+      rdfs:comment "Power system resource is the resource in district microgrid, including energy generation units, energy storage units, energy consumers and power delivery system, etc."@en ;
+      rdfs:label "PowerSystemResource" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isAssociatedObjectOf ;
+                owl:someValuesFrom eko:KPICalculation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass dct:Location ;
+                owl:onProperty dul:hasLocation ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (dul:PhysicalObject [ a       owl:Class ;
+                            owl:unionOf ([ a       owl:Restriction ;
+                                        owl:onProperty eko:deliversEnergy ;
+                                        owl:someValuesFrom ero:EnergySupply
+                                      ] [ a       owl:Restriction ;
+                                        owl:onProperty eko:storesEnergy ;
+                                        owl:someValuesFrom eko:EnergyStorage
+                                      ] [ a       owl:Restriction ;
+                                        owl:onProperty ero:consumesEnergy ;
+                                        owl:someValuesFrom ero:EnergyDemand
+                                      ] [ a       owl:Restriction ;
+                                        owl:onProperty ero:producesEnergy ;
+                                        owl:someValuesFrom eko:EnergyProduction
+                                      ])
+                          ])
+              ] .
+
+ero:EnergySupply
+      a       owl:Class ;
+      rdfs:comment "The energy supplied to end uses"@en ;
+      rdfs:label "EnergySupply"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:suppliesTo ;
+                owl:someValuesFrom ero:EnergyDemand
+              ] .
+
+om:Unit_division
+      a       owl:Class ;
+      rdfs:label "Unit_division" ;
+      rdfs:subClassOf om:Compound_unit .
+
+eko:hasCalculation
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "To represent the calculation of key performance indicators"@en ;
+      rdfs:domain eko:KPI ;
+      rdfs:label "hasCalculation"@en ;
+      rdfs:range eko:KPICalculation ;
+      owl:inverseOf eko:isCalculationOf .
+
+eko:hasAssociatedObject
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "To relate Key Performance Indicators with their evaluated objects."@en ;
+      rdfs:domain eko:KPICalculation ;
+      rdfs:label "hasAssociatedObject"@en ;
+      rdfs:range eko:KPIEvaluatedObject ;
+      owl:inverseOf eko:isAssociatedObjectOf .
+
+eko:hasEquipmentParameter
+      a       owl:ObjectProperty , owl:IrreflexiveProperty , owl:AsymmetricProperty ;
+      rdfs:domain ero:Equipment ;
+      rdfs:label "Relation linking Equipment and its Equipment Parameter"@en , "hasEquipmentParameter"@en ;
+      rdfs:range bio:EquipmentParameter ;
+      owl:inverseOf bio:isEquipmentParameterOf .
+
+eko:hasExtWindow
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking building Zone and its exterior window"@en ;
+      rdfs:domain bio:Zone ;
+      rdfs:label "hasExteriorWindow"@en ;
+      rdfs:range eko:ExtWindow ;
+      owl:inverseOf eko:isExtWindowOf .
+
+ero:EnergyType
+      a       owl:Class ;
+      rdfs:comment "The energy type produced, consumed, stored or provided, such as electricity, heat and cold"@en ;
+      rdfs:label "EnergyType"^^xsd:string ;
+      rdfs:subClassOf eko:EntityType .
+
+wo:SolarIrradiance
+      a       owl:Class ;
+      rdfs:comment "The intensity of outdoor solar radiation"@en ;
+      rdfs:label "SolarIrradiance"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon .
+
+ssn:Observation
+      a       owl:Class ;
+      rdfs:comment """The observation data of the sensor or meter, the measurement of different parameter
+An Observation is a Situation in which a Sensing method has been used to estimate or calculate a value of a Property of a FeatureOfInterest. Links to Sensing and Sensor describe what made the Observation and how; links to Property and Feature detail what was sensed; the result is the output of a Sensor; other metadata details times etc.""" ;
+      rdfs:label "Observation"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:DatumSource
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass time:TemporalEntity ;
+                owl:onProperty ssn:observationSamplingTime ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass ssn:FeatureOfInterest ;
+                owl:onProperty ssn:featureOfInterest ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass ssn:Property ;
+                owl:onProperty ssn:observedProperty ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ssn:observationResult ;
+                owl:someValuesFrom ssn:ObservationValue
+              ] .
+
+eko:EquipmentType
+      a       owl:Class ;
+      rdfs:comment "Equipment type describes the type of an equipment"@en ;
+      rdfs:label "EquipmentType"@en ;
+      rdfs:subClassOf eko:EntityType .
+
+eko:isEvaluationTimeStepOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isEvaluationTimeStepOf"@en .
+
+eko:StoringUnit
+      a       owl:Class ;
+      rdfs:comment "Storing unit is the device that stores energy."@en ;
+      rdfs:label "StoringUnit" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:storesEnergyType ;
+                owl:someValuesFrom ero:EnergyType
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (eko:PowerEquipment [ a       owl:Restriction ;
+                            owl:onProperty eko:storesEnergy ;
+                            owl:someValuesFrom eko:EnergyStorage
+                          ])
+              ] .
+
+eko:isExperiencedBy
+      a       owl:ObjectProperty ;
+      rdfs:label "isExperiencedBy"@en .
+
+eko:isUnitOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:domain om:Unit_of_measure ;
+      rdfs:label "isUnitOf"@en .
+
+bio:isEquipmentParameterOf
+      a       owl:ObjectProperty ;
+      rdfs:domain bio:EquipmentParameter ;
+      rdfs:label "isEquipmentParameterOf"@en .
+
+eko:isObservedPropertyOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isObservedPropertyOf"@en .
+
+bio:hasSchedule
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking an Event and its Schedule"@en ;
+      rdfs:domain schema:Event ;
+      rdfs:label "hasSchedule"@en ;
+      rdfs:range bio:Schedule .
+
+ssn:Property
+      a       owl:Class ;
+      rdfs:comment "The observed property describes what kind of data is observed."@en ;
+      rdfs:label "ObservationProperty" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty ssn:isPropertyOf ;
+                owl:someValuesFrom ssn:FeatureOfInterest
+              ] .
+
+bio:Efficiency
+      a       owl:Class ;
+      rdfs:label "Efficiency"@en ;
+      rdfs:subClassOf bio:EquipmentParameter .
+
+ero:consumesEnergyType
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the energy consumption system or equipment to the Energy Type it consumes"@en ;
+      rdfs:domain eko:PowerSystemResource ;
+      rdfs:label "consumesEnergyType"^^xsd:string ;
+      rdfs:range ero:EnergyType ;
+      owl:inverseOf ero:energyTypeConsumedBy .
+
+eko:actsTo
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking the Occupant Behavior and the Energy Consumer Faility it acts"@en ;
+      rdfs:domain eko:OccupantBehavior ;
+      rdfs:label "actsTo"@en ;
+      rdfs:range ero:EnergyFacility ;
+      owl:inverseOf eko:isActedBy .
+
+eko:PowerEquipment
+      a       owl:Class ;
+      rdfs:comment "Power equipment is the equipment contained in district power system."@en ;
+      rdfs:label "PowerEquipment" ;
+      rdfs:subClassOf eko:PowerSystemResource ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:composes ;
+                owl:someValuesFrom eko:EquipmentContainer
+              ] ;
+      owl:equivalentClass
+              [ a       owl:Class ;
+                owl:intersectionOf (eko:PowerSystemResource ero:Equipment)
+              ] .
+
+eko:energyTypeDeliveredBy
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "energyTypeDeliveredBy"@en .
+
+owl:Thing
+      a       owl:Class .
+
+eko:WindDirection
+      a       owl:Class ;
+      rdfs:comment "The weather phenomenon of wind direction"@en ;
+      rdfs:label "WindDirection"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon .
+
+wo:hasSpeed
+      a       owl:FunctionalProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation linking a Wind and its speed "@en ;
+      rdfs:domain wo:Wind ;
+      rdfs:label "hasSpeed"@en ;
+      rdfs:range eko:WindSpeed .
+
+eko:PerformanceGoal
+      a       owl:Class ;
+      rdfs:comment "The performance that needed to be achieved"@en ;
+      rdfs:label "PerformanceGoal"@en ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasAssociatedKPI ;
+                owl:someValuesFrom eko:KPI
+              ] .
+
+eko:WorkstationLighting
+      a       owl:Class ;
+      rdfs:label "WorkstationLighting"@en ;
+      rdfs:subClassOf eko:VisualComfort .
+
+eko:hasDeterminant
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking Energy Cost to its determinants like Energy Supply and Energy Tariff"@en ;
+      rdfs:domain ero:EnergyCost ;
+      rdfs:label "hasDeterminant"@en ;
+      rdfs:range
+              [ a       owl:Class ;
+                owl:unionOf (ero:EnergyGain ero:EnergySupply ero:EnergyTariff)
+              ] ;
+      owl:inverseOf eko:isDeterminantOf .
+
+eko:hasOccupancyParameter
+      a       owl:ObjectProperty ;
+      rdfs:comment "Relation linking Occupant and its related parameter"@en ;
+      rdfs:domain eko:Occupant ;
+      rdfs:label "hasOccupantParameter"@en ;
+      rdfs:range po:OccupancyParameter ;
+      owl:inverseOf eko:isOccupancyParameterOf .
+
+dul:PhysicalObject
+      a       owl:Class ;
+      rdfs:comment "An inanimate, three-dimensional object or substance. The physical object identified in the district."@en ;
+      rdfs:label "PhysicalObject" ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onDataRange xsd:string ;
+                owl:onProperty dct:identifier ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+eko:ElectricVehicle
+      a       owl:Class ;
+      rdfs:comment "Electric vehicle that stores energy."@en ;
+      rdfs:label "ElectricVehicle" ;
+      rdfs:subClassOf eko:StoringUnit .
+
+po:hasInfluenceOn
+      a       owl:TransitiveProperty , owl:ObjectProperty ;
+      rdfs:comment "Relation to describe one thing influence to another thing"@en ;
+      rdfs:domain owl:Thing ;
+      rdfs:label "hasInfluenceOn"@en ;
+      rdfs:range owl:Thing ;
+      owl:inverseOf po:isInfluencedBy .
+
+eko:IndoorComfort
+      a       owl:Class ;
+      rdfs:comment "Indoor comfort describes the indoor environment"@en ;
+      rdfs:label "IndoorComfort"@en ;
+      rdfs:subClassOf bio:EnvironmentalParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom eko:OccupantBehavior
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onClass bio:Zone ;
+                owl:onProperty ero:hasAssociatedZone ;
+                owl:qualifiedCardinality
+                        "1"^^xsd:nonNegativeInteger
+              ] .
+
+wo:Temperature
+      a       owl:Class ;
+      rdfs:comment "Outdoor temperature"@en ;
+      rdfs:label "Temperature"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon .
+
+[]    a       owl:AllDisjointClasses ;
+      owl:members (eko:BuildingEquipment eko:District eko:Occupant bio:Building bio:BuildingElement) .
+
+eko:PhotovoltaicType
+      a       owl:Class ;
+      rdfs:comment "Photovoltaic type describes the type of PV generating unit"@en ;
+      rdfs:label "PhotovoltaicType"@en ;
+      rdfs:subClassOf eko:EntityType .
+
+owl:topDataProperty
+      a       owl:DatatypeProperty .
+
+dct:modified
+      a       owl:AnnotationProperty .
+
+eko:isU-valueOf
+      a       owl:InverseFunctionalProperty , owl:ObjectProperty ;
+      rdfs:label "isU-valueOf"@en ;
+      owl:inverseOf bio:containsU-value .
+
+eko:WindSpeed
+      a       owl:Class ;
+      rdfs:comment "The weather phenomenon of wind speed"@en ;
+      rdfs:label "WindSpeed"@en ;
+      rdfs:subClassOf wo:WeatherPhenomenon .
+
+eko:isVariableOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isVariableOf"@en .
+
+eko:isPerformanceGoalOf
+      a       owl:ObjectProperty ;
+      rdfs:label "isPerformanceGoalOf"@en .
+
+eko:FeedInTariff
+      a       owl:Class ;
+      rdfs:comment "The tariff for sale energy per unit to main grid"@en ;
+      rdfs:label "FeedInTariff"@en ;
+      rdfs:subClassOf ero:EnergyTariff ;
+      owl:disjointWith ero:EnergyCostTariff .
+
+eko:EnergyStorage
+      a       owl:Class ;
+      rdfs:comment "The energy stored by storage system"@en ;
+      rdfs:label "EnergyStorage"@en ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:providesTo ;
+                owl:someValuesFrom eko:EnergySupplyFromStorage
+              ] .
+
+bio:Power
+      a       owl:Class ;
+      rdfs:label "power"@en ;
+      rdfs:subClassOf bio:EquipmentParameter .
+
+bio:BuildingElement
+      a       owl:Class ;
+      rdfs:comment "The element composes the building structure."@en ;
+      rdfs:label "BuildingElement"@en ;
+      rdfs:subClassOf ero:BuildingThing .
+
+ero:EnergyDemand
+      a       owl:Class ;
+      rdfs:comment "The energy demand in district or buildings"@en ;
+      rdfs:label "EnergyDemand"^^xsd:string ;
+      rdfs:subClassOf ero:EnergyParameter ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty po:hasInfluenceOn ;
+                owl:someValuesFrom ero:EnergyCost
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasForecast ;
+                owl:someValuesFrom eko:EnergyDemandForecast
+              ] .
+
+eko:Occupant
+      a       owl:Class ;
+      rdfs:comment "The occupant who occupies the zone in building"@en ;
+      rdfs:label "Occupant"@en ;
+      rdfs:subClassOf dul:PhysicalObject ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasOccupancyParameter ;
+                owl:someValuesFrom po:OccupancyParameter
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:isFeatureOfInterestOf ;
+                owl:someValuesFrom ssn:Observation
+              ] ;
+      rdfs:subClassOf
+              [ a       owl:Restriction ;
+                owl:onProperty eko:hasBehavior ;
+                owl:someValuesFrom eko:OccupantBehavior
+              ] .
