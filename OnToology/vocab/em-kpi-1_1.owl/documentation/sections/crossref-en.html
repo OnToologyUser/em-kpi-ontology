@@ -1,5 +1,5 @@
-<h2  id="crossreference" class="list">Cross reference for EM-KPI Ontology, Energy Management - Key Performance Indicator Ontology classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
-This section provides details for each class and property defined by EM-KPI Ontology, Energy Management - Key Performance Indicator Ontology.
+<h2  id="crossreference" class="list">Cross reference for Energy Management - Key Performance Indicator Ontology classes, properties and dataproperties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by Energy Management - Key Performance Indicator Ontology.
 <div id="classes">
    <h3 id="classes" class="list">Classes</h3>
    <ul class="hlist">
@@ -631,10 +631,37 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasYearOfConstruction"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasYearOfConstruction">hasYearOfConstruction</a>
-            <sup class="type-dp" title="data property">dp</sup> 
-            <span class="logic">exactly</span> 1</dd>
+            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"
+               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation">hasLocation</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#http://purl.org/dc/terms/Location" title="http://purl.org/dc/terms/Location">Location</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasArea"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasArea">hasArea</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Area"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Area">Area</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#isAssociatedObjectOf"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedObjectOf">isAssociatedObjectOf</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#KPICalculation"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculation">KPICalculation</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasBuildingType"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasBuildingType">hasBuildingType</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#BuildingType"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#BuildingType">BuildingType</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
          <dd>
             <a href="#hasAirConditionedVolume"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasAirConditionedVolume">hasAirConditionedVolume</a>
@@ -652,48 +679,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#hasYearOfConstruction"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasYearOfConstruction">hasYearOfConstruction</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">exactly</span> 1</dd>
+         <dd>
+            <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">title</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">exactly</span> 1</dd>
+         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#BuildingThing">BuildingThing</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#hasBuildingType"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasBuildingType">hasBuildingType</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#BuildingType"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#BuildingType">BuildingType</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#isAssociatedObjectOf"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedObjectOf">isAssociatedObjectOf</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#KPICalculation"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculation">KPICalculation</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"
-               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation">hasLocation</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://purl.org/dc/terms/Location" title="http://purl.org/dc/terms/Location">Location</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">title</a>
-            <sup class="type-dp" title="data property">dp</sup> 
-            <span class="logic">exactly</span> 1</dd>
-         <dd>
-            <a href="#hasArea"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasArea">hasArea</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Area"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Area">Area</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -1133,25 +1133,12 @@ This section provides details for each class and property defined by EM-KPI Onto
       <dl class="description">
          <dt>has super-classes</dt>
          <dd>
-            <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">title</a>
-            <sup class="type-dp" title="data property">dp</sup> 
-            <span class="logic">exactly</span> 1</dd>
-         <dd>
             <a href="#experiences"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#experiences">experiences</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Weather"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Weather">Weather</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#PowerSystemResource"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#PowerSystemResource">PowerSystemResource</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
@@ -1164,6 +1151,14 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#isFeatureOfInterestOf"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#isFeatureOfInterestOf">isFeatureOfInterestOf</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#http://purl.oclc.org/NET/ssnx/ssn#Observation" title="http://purl.oclc.org/NET/ssnx/ssn#Observation">Observation</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -1173,20 +1168,25 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#isFeatureOfInterestOf"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#isFeatureOfInterestOf">isFeatureOfInterestOf</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#http://purl.oclc.org/NET/ssnx/ssn#Observation" title="http://purl.oclc.org/NET/ssnx/ssn#Observation">Observation</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"
                title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation">hasLocation</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#http://purl.org/dc/terms/Location" title="http://purl.org/dc/terms/Location">Location</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
+         <dd>
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#PowerSystemResource"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#PowerSystemResource">PowerSystemResource</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#http://purl.org/dc/terms/title" title="http://purl.org/dc/terms/title">title</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">exactly</span> 1</dd>
          <dt>is in domain of</dt>
          <dd>
             <a href="#experiences"
@@ -1286,21 +1286,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>)</dd>
          <dt>has super-classes</dt>
          <dd>
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility">EnergyConsumerFacility</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergyType"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#consumesEnergyType">consumesEnergyType</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType">EnergyType</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyConsumerFacility">EnergyConsumerFacility</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
       </dl>
@@ -1383,15 +1383,6 @@ This section provides details for each class and property defined by EM-KPI Onto
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasDeterminant">hasDeterminant</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
-            <a href="#EnergySupplyFromExternalGrid"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromExternalGrid">EnergySupplyFromEnergyProvider</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#hasDeterminant"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasDeterminant">hasDeterminant</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyTariff">EnergyTariff</a>
             <sup class="type-c" title="class">c</sup>
@@ -1403,6 +1394,15 @@ This section provides details for each class and property defined by EM-KPI Onto
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyGain"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyGain">EnergyGain</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasDeterminant"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasDeterminant">hasDeterminant</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#EnergySupplyFromExternalGrid"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromExternalGrid">EnergySupplyFromEnergyProvider</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -1472,21 +1472,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasForecast"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasForecast">Relation linking Weather or Energy to its forecast</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#EnergyDemandForecast"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergyDemandForecast">EnergyDemandForecast</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn">hasInfluenceOn</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCost"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyCost">EnergyCost</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasForecast"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasForecast">Relation linking Weather or Energy to its forecast</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#EnergyDemandForecast"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergyDemandForecast">EnergyDemandForecast</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in range of</dt>
@@ -1575,21 +1575,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#BuildingEquipment"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#BuildingEquipment">BuildingEquipment</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#isAssociatedObjectOf"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedObjectOf">isAssociatedObjectOf</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#KPICalculation"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculation">KPICalculation</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#BuildingEquipment"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#BuildingEquipment">BuildingEquipment</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in range of</dt>
@@ -1746,21 +1746,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>)</dd>
          <dt>has super-classes</dt>
          <dd>
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType">producesEnergyType</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType">EnergyType</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#contains">contains</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#GeneratingUnit"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#GeneratingUnit">GeneratingUnit</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#producesEnergyType">producesEnergyType</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#EnergyType">EnergyType</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>has sub-classes</dt>
@@ -1809,21 +1809,21 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#providesTo"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#providesTo">providesTo</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#EnergySupplyFromSiteProduction"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromSiteProduction">EnergySupplyFromSiteProduction</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#hasForecast"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasForecast">Relation linking Weather or Energy to its forecast</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#EnergyProductionForecast"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergyProductionForecast">EnergyProductionForecast</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#providesTo"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#providesTo">providesTo</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#EnergySupplyFromSiteProduction"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergySupplyFromSiteProduction">EnergySupplyFromSiteProduction</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in range of</dt>
@@ -2425,12 +2425,6 @@ This section provides details for each class and property defined by EM-KPI Onto
       <dl class="description">
          <dt>has super-classes</dt>
          <dd>
-            <a href="#http://schema.org/duration" title="http://schema.org/duration">duration</a>
-            <sup class="type-dp" title="data property">dp</sup> 
-            <span class="logic">some</span> 
-            <span class="dotted" title="http://www.w3.org/2001/XMLSchema#duration">duration</span>
-         </dd>
-         <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn">hasInfluenceOn</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -2440,12 +2434,10 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://schema.org/attendee" title="http://schema.org/attendee">attendee</a>
-            <sup class="type-op" title="object property">op</sup> 
+            <a href="#http://schema.org/duration" title="http://schema.org/duration">duration</a>
+            <sup class="type-dp" title="data property">dp</sup> 
             <span class="logic">some</span> 
-            <a href="#Occupant"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#Occupant">Occupant</a>
-            <sup class="type-c" title="class">c</sup>
+            <span class="dotted" title="http://www.w3.org/2001/XMLSchema#duration">duration</span>
          </dd>
          <dd>
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#hasSchedule"
@@ -2454,6 +2446,14 @@ This section provides details for each class and property defined by EM-KPI Onto
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Schedule"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/gbBuildingOntology.owl#Schedule">Schedule</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#http://schema.org/attendee" title="http://schema.org/attendee">attendee</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#Occupant"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#Occupant">Occupant</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -3061,13 +3061,13 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://www.w3.org/2006/time#hasEnd" title="http://www.w3.org/2006/time#hasEnd">hasEnd</a>
+            <a href="#http://www.w3.org/2006/time#hasBeginning" title="http://www.w3.org/2006/time#hasBeginning">hasBeginning</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#http://www.w3.org/2006/time#Instant" title="http://www.w3.org/2006/time#Instant">Instant</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#http://www.w3.org/2006/time#hasBeginning" title="http://www.w3.org/2006/time#hasBeginning">hasBeginning</a>
+            <a href="#http://www.w3.org/2006/time#hasEnd" title="http://www.w3.org/2006/time#hasEnd">hasEnd</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#http://www.w3.org/2006/time#Instant" title="http://www.w3.org/2006/time#Instant">Instant</a>
             <sup class="type-c" title="class">c</sup>
@@ -3165,10 +3165,18 @@ This section provides details for each class and property defined by EM-KPI Onto
       <dl class="description">
          <dt>has super-classes</dt>
          <dd>
-            <a href="#hasCalculationModel"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasCalculationModel">hasCalculationModel</a>
+            <a href="#hasAssociatedObject"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasAssociatedObject">hasAssociatedObject</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://identifiers.org/mamo/Mathematical_model" title="http://identifiers.org/mamo/Mathematical_model">Mathematical_model</a>
+            <span class="logic">exactly</span> 1 <a href="#KPIEvaluatedObject"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPIEvaluatedObject">KPIEvaluatedObject</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasEvaluationTimeStep"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasEvaluationTimeStep">hasEvaluationTimeStep</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#http://www.w3.org/2006/time#Interval" title="http://www.w3.org/2006/time#Interval">Interval</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
@@ -3181,18 +3189,17 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#isCalculationOf"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#isCalculationOf">isCalculationOf</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#KPI"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPI">KeyPerformanceIndicator</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#http://purl.oclc.org/NET/ssnx/ssn#hasOutput" title="http://purl.oclc.org/NET/ssnx/ssn#hasOutput">hasOutput</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#KPIValue"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#KPIValue">KPIValue</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasCalculationModel"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasCalculationModel">hasCalculationModel</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#http://identifiers.org/mamo/Mathematical_model" title="http://identifiers.org/mamo/Mathematical_model">Mathematical_model</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
@@ -3204,18 +3211,11 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasEvaluationTimeStep"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasEvaluationTimeStep">hasEvaluationTimeStep</a>
+            <a href="#isCalculationOf"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#isCalculationOf">isCalculationOf</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://www.w3.org/2006/time#Interval" title="http://www.w3.org/2006/time#Interval">Interval</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#hasAssociatedObject"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasAssociatedObject">hasAssociatedObject</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#KPIEvaluatedObject"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPIEvaluatedObject">KPIEvaluatedObject</a>
+            <span class="logic">exactly</span> 1 <a href="#KPI"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPI">KeyPerformanceIndicator</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -3325,19 +3325,19 @@ This section provides details for each class and property defined by EM-KPI Onto
       <dl class="description">
          <dt>has super-classes</dt>
          <dd>
-            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasValue"
-               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasValue">hasValue</a>
-            <sup class="type-dp" title="data property">dp</sup> 
-            <span class="logic">some</span> 
-            <span class="dotted" title="http://www.w3.org/2001/XMLSchema#float">float</span>
-         </dd>
-         <dd>
             <a href="#hasUnit"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasUnit">hasUnit</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">exactly</span> 1 <a href="#http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure"
                title="http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure">Unit_of_measure</a>
             <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasValue"
+               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasValue">hasValue</a>
+            <sup class="type-dp" title="data property">dp</sup> 
+            <span class="logic">some</span> 
+            <span class="dotted" title="http://www.w3.org/2001/XMLSchema#float">float</span>
          </dd>
          <dt>is in range of</dt>
          <dd>
@@ -3421,6 +3421,14 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#containsVariable"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#containsVariable">containsVariable</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#http://identifiers.org/mamo/Variable" title="http://identifiers.org/mamo/Variable">Variable</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
             <a href="#containsConstant"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#containsConstant">containsConstant</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -3430,20 +3438,11 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#containsAssumption"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#containsAssumption">containsAssumption</a>
+            <a href="#isMathematicalModelOf"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#isMathematicalModelOf">isMathematicalModelOf</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#Assumption"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#Assumption">Assumption</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#containsVariable"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#containsVariable">containsVariable</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#http://identifiers.org/mamo/Variable" title="http://identifiers.org/mamo/Variable">Variable</a>
+            <span class="logic">exactly</span> 1 <a href="#KPI"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPI">KeyPerformanceIndicator</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
@@ -3455,11 +3454,12 @@ This section provides details for each class and property defined by EM-KPI Onto
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#isMathematicalModelOf"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#isMathematicalModelOf">isMathematicalModelOf</a>
+            <a href="#containsAssumption"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#containsAssumption">containsAssumption</a>
             <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#KPI"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#KPI">KeyPerformanceIndicator</a>
+            <span class="logic">some</span> 
+            <a href="#Assumption"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#Assumption">Assumption</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -3541,21 +3541,21 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#providesTo"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#providesTo">providesTo</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#DatumSource"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#DatumSource">DatumSource</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#http://purl.oclc.org/NET/ssnx/ssn#observationResult"
                title="http://purl.oclc.org/NET/ssnx/ssn#observationResult">The result of an observation</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#http://purl.oclc.org/NET/ssnx/ssn#ObservationValue"
                title="http://purl.oclc.org/NET/ssnx/ssn#ObservationValue">ObservationValue</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#providesTo"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#providesTo">providesTo</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#DatumSource"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#DatumSource">DatumSource</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
@@ -4156,19 +4156,19 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
+            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"
+               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation">hasLocation</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">exactly</span> 1 <a href="#http://purl.org/dc/terms/Location" title="http://purl.org/dc/terms/Location">Location</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
             <a href="#isAssociatedObjectOf"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#isAssociatedObjectOf">isAssociatedObjectOf</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#KPICalculation"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#KPICalculation">KPICalculation</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"
-               title="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation">hasLocation</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">exactly</span> 1 <a href="#http://purl.org/dc/terms/Location" title="http://purl.org/dc/terms/Location">Location</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>has sub-classes</dt>
@@ -4905,15 +4905,6 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn"
-               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn">hasInfluenceOn</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#EnergyProduction"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergyProduction">EnergyProduction</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#hasForecast"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasForecast">Relation linking Weather or Energy to its forecast</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -4929,6 +4920,15 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <span class="logic">some</span> 
             <a href="#IndoorComfort"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#IndoorComfort">IndoorComfort</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn"
+               title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/ProcessOntology.owl#hasInfluenceOn">hasInfluenceOn</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#EnergyProduction"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#EnergyProduction">EnergyProduction</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>has sub-classes</dt>
@@ -5194,24 +5194,6 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasOccupant"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasOccupant">hasOccupant</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#Occupant"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#Occupant">Occupant</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
-            <a href="#hasExtWall"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWall">hasExteriorWall</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#ExtWall"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#ExtWall">ExteriorWall</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#hasRoof"
                title="http://upmestam.linkeddata.es/em-kpi/ontology#hasRoof">hasRoof</a>
             <sup class="type-op" title="object property">op</sup> 
@@ -5221,19 +5203,19 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
-            <a href="#hasExtWindow"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWindow">hasExteriorWindow</a>
-            <sup class="type-op" title="object property">op</sup> 
-            <span class="logic">some</span> 
-            <a href="#ExtWindow"
-               title="http://upmestam.linkeddata.es/em-kpi/ontology#ExtWindow">ExteriorWindow</a>
-            <sup class="type-c" title="class">c</sup>
-         </dd>
-         <dd>
             <a href="#http://schema.org/event" title="http://schema.org/event">event</a>
             <sup class="type-op" title="object property">op</sup> 
             <span class="logic">some</span> 
             <a href="#http://schema.org/Event" title="http://schema.org/Event">Event</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasExtWall"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWall">hasExteriorWall</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#ExtWall"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#ExtWall">ExteriorWall</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dd>
@@ -5252,6 +5234,24 @@ An Observation is a Situation in which a Sensing method has been used to estimat
             <span class="logic">some</span> 
             <a href="#https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room"
                title="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/EnergyResourceOntology.owl#Room">Room</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasExtWindow"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasExtWindow">hasExteriorWindow</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#ExtWindow"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#ExtWindow">ExteriorWindow</a>
+            <sup class="type-c" title="class">c</sup>
+         </dd>
+         <dd>
+            <a href="#hasOccupant"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#hasOccupant">hasOccupant</a>
+            <sup class="type-op" title="object property">op</sup> 
+            <span class="logic">some</span> 
+            <a href="#Occupant"
+               title="http://upmestam.linkeddata.es/em-kpi/ontology#Occupant">Occupant</a>
             <sup class="type-c" title="class">c</sup>
          </dd>
          <dt>is in domain of</dt>
