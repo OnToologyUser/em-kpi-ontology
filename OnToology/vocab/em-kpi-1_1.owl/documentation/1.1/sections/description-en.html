@@ -1,0 +1,85 @@
+<h2 id="desc" class="list">Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p> The development of the EM-KPI ontology follows the NeOn ontology engineering methodology [1], which is a method to build ontology networks through reusing and re-engineering knowledge resources, instead of building new ontologies from scratch.</p>
+<p> The EM-KPI ontology is divided into seven ontology conceptual modules. The main classes and relationships between different modules is shown in Figure 1. The left module represents the KPI part; the other modules are related to the EM master data part.</p>
+<figure align="center">
+<img src="img/Fig1.jpg" alt="Figure 1"/>
+  <figcaption>Figure 1: The initial conceptual model of the EM-KPI ontology.</figcaption>
+</figure>
+<p>The KPI module represents the main classes and relationships related to the KPIs, including the KPI definition, its related strategic performance goals and stakeholders, the KPI calculation, and so on. The KPI calculation requires the datum sources provided by observations, so it is linked to the observation module. The observation module illustrates the various concepts for the description of the observation results, the observed property and its feature of interest. The time and unit domains are also included in the observation module, because they are essential to describe the data clearly for better understanding. It is of equal importance to represent the evaluation time and the unit of the KPIs. In any case, each KPI and observation has an associated object, which can be either physical or virtual. To represent the KPI-evaluated objects and the features of interest concerning the observation, the infrastructure module and the occupant module are developed. The infrastructure module describes the power system resources and the buildings in the district, including their subclasses and components; the occupant module represents the occupants in the buildings and their behaviours that influence the energy usage. These two modules provide objects for the observation and evaluation, simultaneously presenting the related parameters for measuring, such as the building parameters, the equipment parameters, the occupancy parameters and the energy parameters. These domain parameters are represented in a separate module, and can be treated as the subclasses of the observed property from the observation module. Furthermore, in order to identify the external environment of the objects, the location module and the weather module are indispensable, among which the weather module provides the outdoor environment parameters for observation. </p>
+<p>Each module in the initial conceptual model can be illustrated in detail in the following figures. The domain parameters will be described together with the related objects in order to make their relationship clearer. In addition, the detailed model of each module is developed in parallel with the ontology reuse when possible. We used black squares for classes and grey squares for instances, solid links for properties and dotted links for subclasses or instances. All of the elements are represented with the prefix before their names. </p>
+
+<h3>1.	The KPI Module</h3>
+
+<figure align="center">
+<img src="img/Fig2.jpg" alt="Figure 2"/>
+  <figcaption>Figure 2: Detailed model of the KPI module.</figcaption>
+</figure>
+
+<p>Figure 2 describes the detailed model of the KPI module. Since the general pattern of this model is newly defined, most of the classes and properties are presented with the prefix of the EM-KPI ontology (i.e., eko). As a refinement of the conceptual model, each KPI has an identifier and a definition for its distinction and interpretation. The class KPI is further divided into three subclasses, namely StrategicKPI, TacticalKPI and OperationalKPI, for representing the multi-level key performance information. The StrategicKPI is the hyper-aggregated KPI at the district level, which can be disaggregated to the TacticalKPI at the building and system levels and then the OperationalKPI at the zone and equipment level. The class PerformanceGoal represents the strategic goal of the stakeholders, which has associated KPIs in order to measure the progress made towards achieving it. The model represents in detail the KPI calculation with the use of MAMO [2] and the Model ontology [3]. The equation is linked to a string of MathML, which is an XML language for describing mathematical expressions, and can be converted to Content MathML for calculation [4]. The time step for a KPI calculation is represented as an Interval, which has a beginning instant and an end instant, according to the Time Ontology [5]. The KPI-evaluated objects could be either districts, buildings, power system resources or their subclasses. The output of the KPI calculation is the KPIValue, and each value has a Unit_of_measure. Furthermore, the calculation of the KPIs requires the datum sources provided by the observation from the master data part, while the classes DatumSource and Observation are linked. </p>
+
+<h3>2.	The Observation Module</h3>
+
+<figure align="center">
+<img src="img/Fig3.jpg" alt="Figure 3"/>
+  <figcaption>Figure 3: Detailed model of the observation ontology module.</figcaption>
+</figure>
+
+<p>Figure 3 illustrates the detailed model of the observation module, including the observation time, units and domains. Mainly, the SSN Ontology [6], Time Ontology [5] and OM [7] are reused to construct this module. Since the purpose of the EM-KPI ontology is to describe the master data rather than the sensors, only the observation aspects of the SSN Ontology are represented in the model. The reused terms include Property, FeatureOfInterest and ObservationValue. The feature of interest for the observation could be either districts, buildings, power system resources, occupants or their subclasses. Each observation corresponds to an observed Interval or Instant, which are subclasses of TemporalEntity. The units of observation values are classified based on OM [7]. Most importantly, the observed properties should include the different types of domain parameters needed for the KPI calculation and performance analysis. They can primarily be divided into five categories, namely BuildingParameter, OccupancyParameters, EquipmentParameter, EnergyParameters and EnvironmentParameters, which are extracted respectively from the ERO [8], the PO [9] and the BIO [10] ontologies.</p>
+
+<h3>3.	The Location Module</h3>
+
+<figure align="center">
+<img src="img/Fig4.jpg" alt="Figure 4"/>
+  <figcaption>Figure 4: Detailed model of the location ontology module.</figcaption>
+</figure>
+
+<p>Figure 4 presents the detailed model to describe the location of districts, buildings and power system resources. Districts contain buildings and power system resources, and each of these has an identifier and location. The location can be represented by a geographic coordinate point with the use of WGS84 Geo Positioning Ontology or a postal address with the use of the schema.org vocabularies. </p>
+
+<h3>4.	The Infrastructure Module</h3>
+
+<figure align="center">
+<img src="img/Fig5.jpg" alt="Figure 5"/>
+  <figcaption>Figure 5: Detailed model of the power system resource in the infrastructure module.</figcaption>
+</figure>
+
+<p>The power system resource in the infrastructure module can be classified into subclasses, as shown in Figure 5. The term PowerSystemResource is extracted from the Common Information Model (CIM) [11]. CIM is a series of standards developed by EPRI (Electric Power Research Institute) for the exchange of power system networks and data between different organisations and applications. It describes the components of the power system at the distribution level [12]. EquipmentContainer, PowerEquipment and EnergyFacility are the three main subclasses of PowerSystemResource. The class EquipmentContainer is also extracted from CIM [13]. An equipment container is a group of equipment, such as a substation or distributed energy resources, which is composed of different types of power equipment. The class EnergyFacility is indicated by ERO [8], which describes the facilities in buildings that produce, store or consume energy. The facilities can be further classified into the EnergyConsumerFacility and EnergyProducerFacility. An energy facility may contain different equipment. In order to distinguish the equipment in a power grid and the equipment in buildings, PowerEquipment and BuildingEquipment are defined. Building equipment could be, but is not necessarily, power equipment, which will be described in Figure 8. The class PowerEquipment has subclasses including GeneratingUnit, StoringUnit, PowerDeliveryUnit and EnergyConsumer [14], which describe equipment ranging from energy production, storage and supply to consumption. The most commonly used generating unit is the PhotovoltaicGeneratingUnit. The class PhotovoltaicType is defined, because the generating efficiency depends on the type of PV unit. In any case, each type of power equipment has its own equipment parameters, such as capacity and input watts. </p>
+
+<figure align="center">
+<img src="img/Fig6.jpg" alt="Figure 6"/>
+  <figcaption>Figure 6: Detailed model of the building in the infrastructure module.</figcaption>
+</figure>
+
+<p>Buildings are connected to the power system; the detailed model of the ontology related to the building is shown in Figure 6. Each building has a description of the building type, the year of construction and building parameters such as area and volume, because these factors all impact the level of energy use. The building contains energy facilities such as a HVAC system and a lighting system, and energy facilities contain building equipment. Each type of building equipment has its equipment type and some equipment parameters. The description of EquipmentParameter is extracted from BIO [10], which describes different aspects, including capacity, efficiency, input watts and power. Building elements such as BuildingStorey, Zone and Room are also provided by BIO. Here, the zone refers to a building thermal zone. Since the thermal load of a zone is concerned with the building envelope, including its exterior wall, exterior window, exterior roof and floor, the classes ExtWall, ExtWindow, Floor and Roof are respectively defined. The thermal property of the envelope is represented as a U-value, which is a subclass of BuildingParameter, and it is also provided by the BIO ontology. Finally, occupants are those who use the zone; they are the attendees of the event taking place in the zone. Each event has a duration and a schedule. </p>
+
+<h3>5.	The Occupant Module</h3>
+
+<figure align="center">
+<img src="img/Fig7.jpg" alt="Figure 7"/>
+  <figcaption>Figure 7: Detailed model of the occupant ontology module.</figcaption>
+</figure>
+
+<p>In order to describe the occupancy parameters and the factors which influence occupants’ behaviour, Figure 7 offers a detailed model of the occupant module. The occupancy parameter concerned in this case only includes the occupant number, regardless of his/her gender, age, and so on. Some patterns of this model are extracted from the ontology proposed by Tianzhen Hong et al. [15]. The main drivers of occupants’ behaviour include the event and the level of indoor comfort existing in the zone. Furthermore, the outdoor weather influences the level of indoor comfort, so it indirectly impacts the occupants’ behaviour. The occupants’ behaviour has consequences for the energy consumer facilities, thus influencing the energy demand. The IndoorComfort and Weather are the subclasses of EnvironmentalParameter, among which IndoorComfort is further divided into ThermalComfort, VisualComfort and IndoorAirQuality. </p>
+
+<h3>6.	The Weather Module</h3>
+
+<figure align="center">
+<img src="img/Fig8.jpg" alt="Figure 8"/>
+  <figcaption>Figure 8: Detailed model of the weather module.</figcaption>
+</figure>
+
+<p>The detailed model of the weather module is depicted in Figure 8. It reuses mainly the concepts and patterns of the Weather Ontology [16]. The Weather class is defined here to describe different types of outdoor environment, which is divided into two subclasses WeatherCondition and WeatherPhenomenon. The weather condition describes conditions such as rain, snow and sun, and the weather phenomenon includes outdoor temperature, humidity, wind and solar irradiance. The SolarIrradiance is classified into GlobalHorizontalSolarIrradiance and GlobalInclined41SolarIrradiance, because one of these represents the horizontal solar radiation intensity, while the other one represents the strongest solar radiation intensity at the location of application. The weather has a direct influence on energy production, and the weather forecast influences the energy forecast in district and buildings, thus influencing energy supply. </p>
+
+<h3>7.	The Energy Parameter Module</h3>
+
+<figure align="center">
+<img src="img/Fig9.jpg" alt="Figure 9"/>
+  <figcaption>Figure 9: Detailed model of the energy parameter in the domain parameter module.</figcaption>
+</figure>
+
+<p>Finally, Figure 9 illustrates the detailed model related to the energy parameters. Some primary concepts and patterns of this model are selected from ERO [8]. The model describes the energy type produced, stored, delivered and consumed. To describe the various aspects of energy parameters, the class EnergyParameter contains subclasses such as EnergyProduction, EnergyStorage, EnergySupply, EnergyDemand, EnergyGain, EnergyCost, EnergyTariff and EnergyForecast. The class EnergySupply is further classified into three subclasses to represent the sources, namely EnergySupplyFromStorage, EnergySupplyFromSiteProduction and EnergySupplyFromExternalGrid, which respectively represent the energy supplier of off-peak storage, the site-renewable resources and the external grid. The EnergyGain describes the surplus energy that could be sold to the external grid. The EnergyTariff is divided into EnergyCostTariff and FeedInTariff, which respectively refer to the tariff for purchasing energy from, and for selling energy to, the external grid. Therefore, the energy cost depends on the energy tariff, energy gain and energy supply from external grid.</p>
+
+<p>In summary, the figures above illustrate the different ontology modules of the initial conceptual model. Figure 2 describes the detailed model of the KPIs and their calculation, while Figure 3 describes the observations that offer datum sources for KPI calculation and analysis. Figure 4 to Figure 9 introduce in detail the KPI-evaluated objects and observed features of interest (e.g., districts, power system resources, buildings and occupants), in addition to the different parameters (i.e., building parameters, occupancy parameters, equipment parameters, energy parameters and environmental parameters). </p>
+
+
+
+
